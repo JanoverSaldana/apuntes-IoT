@@ -8,27 +8,24 @@
 
 ### A.1 Usuarios Primarios del Sistema
 
-#### 1. Atletas/Jugadores
-- **Descripción**: Deportistas profesionales y amateur que utilizan la cancha
-- **Contexto de uso**: Durante entrenamientos, partidos y sesiones de análisis
-- **Nivel técnico**: Variable (desde amateur hasta profesional)
-- **Dispositivos de acceso**: Aplicación móvil, tablets, wearables
-- **Necesidades principales**:
-  - Retroalimentación de rendimiento en tiempo real
-  - Análisis post-entrenamiento
-  - Comparación de métricas personales
-  - Gamificación de entrenamientos
+#### 1. Atletas/Jugadores (Según enunciado)
+- **Descripción**: Destinatarios de retroalimentación en tiempo real y análisis de rendimiento (enunciado)
+- **Contexto de uso**: Entrenamientos con seguimiento de jugadores para retroalimentación inmediata (enunciado)
+- **Beneficios del sistema**:
+  - Ver métricas como tiempo de reacción, velocidad, distancia recorrida y precisión de tiros (enunciado)
+  - Visualización instantánea en la cancha para análisis inmediato (enunciado)
+  - Perfeccionar habilidades como velocidad, agilidad y visión periférica (enunciado)
+  - Entrenamientos gamificados con defensores virtuales (enunciado)
 
-#### 2. Entrenadores y Cuerpo Técnico
-- **Descripción**: Personal técnico responsable del desarrollo deportivo
-- **Contexto de uso**: Planificación, ejecución y análisis de entrenamientos/partidos
-- **Nivel técnico**: Alto conocimiento deportivo, medio-alto tecnológico
-- **Dispositivos de acceso**: Tablets, laptops, aplicaciones especializadas
-- **Necesidades principales**:
-  - Herramientas de análisis táctico
-  - Control del sistema de cancha
-  - Diseño de ejercicios interactivos
-  - Reportes de rendimiento de equipo
+#### 2. Entrenadores y Cuerpo Técnico (Según enunciado)  
+- **Descripción**: Usuarios principales del componente más avanzado del sistema (enunciado)
+- **Herramienta principal**: Pizarra en la cancha accesible por aplicación de tableta (enunciado)
+- **Capacidades específicas**:
+  - Dibujar tácticas y ejercicios directamente en la cancha en tiempo real (enunciado)
+  - Crear entornos virtuales dinámicos y escenarios gamificados (enunciado)
+  - Acceder a seguimiento del rendimiento y estadísticas de atletas (enunciado)
+  - Visualizar métricas de rendimiento en tiempo real directamente en la cancha (enunciado)
+- **Ejemplo de uso**: Dibujar jugada en iPad que aparece como trayectoria iluminada (enunciado)
 
 #### 3. Árbitros y Oficiales
 - **Descripción**: Personal encargado de hacer cumplir las reglas durante competiciones
@@ -43,42 +40,53 @@
 
 ### A.2 Usuarios Secundarios del Sistema
 
-#### 4. Operadores de Instalaciones
-- **Descripción**: Personal técnico responsable del funcionamiento del sistema
-- **Contexto de uso**: Configuración, monitoreo y mantenimiento diario
-- **Nivel técnico**: Alto conocimiento técnico del sistema
-- **Dispositivos de acceso**: Consola de operación, interfaces web, aplicaciones móviles
-- **Necesidades principales**:
-  - Control total del sistema GlassCourt OS
-  - Monitoreo de estado del hardware
-  - Configuración de eventos y layouts
-  - Gestión de usuarios y permisos
+#### 4. Operadores de Instalaciones (Según enunciado)
+- **Descripción**: Usuarios del módulo de Control y Gestión del sistema (enunciado)  
+- **Herramientas principales**:
+  - Navegador de cancha: Aplicación principal para controlar GlassFloor fácilmente (enunciado)
+  - Panel de inicio de aplicaciones: Acceso instantáneo a juegos y activaciones (enunciado)
+  - Editor de cancha (próximamente): Personalización completa de diseños (enunciado)
+- **Capacidades específicas**:
+  - Cambiar entre diferentes diseños predefinidos (enunciado)
+  - Añadir logotipos de patrocinadores y gráficos personalizados (enunciado)
+  - Compatibilidad multideportiva para diversos deportes (enunciado)
+  - Cambio rápido y fluido entre deportes con diferentes dimensiones (enunciado)
 
-#### 5. Espectadores/Audiencia
-- **Descripción**: Público general que asiste a eventos deportivos
-- **Contexto de uso**: Durante eventos en vivo como entretenimiento
-- **Nivel técnico**: Bajo a medio, usuarios generales
-- **Dispositivos de acceso**: Aplicación móvil, web responsive
-- **Necesidades principales**:
-  - Información estadística en tiempo real
-  - Contenido interactivo y gamificado
-  - Participación en actividades durante descansos
-  - Acceso a replays y análisis
+#### 5. Aficionados/Espectadores (Según enunciado)
+- **Descripción**: Beneficiarios de entretenimiento y participación mejorada (enunciado)
+- **Contexto**: Eventos en vivo con experiencia mejorada (enunciado)
+- **Herramientas del sistema**:
+  - Animaciones dinámicas durante presentaciones y descansos (enunciado)
+  - Minijuegos interactivos durante inactividad (enunciado)
+  - Narrativa visual que combina datos de rendimiento con gráficos dinámicos (enunciado)
+- **Beneficio**: Nivel de participación y valor sin precedentes (enunciado)
+- **Objetivo**: Fomentar participación en todos los niveles (enunciado)
 
-#### 6. Directivos y Administradores
-- **Descripción**: Gestores de instalaciones deportivas y decisores
-- **Contexto de uso**: Planificación estratégica y análisis de ROI
-- **Nivel técnico**: Medio, enfoque en métricas de negocio
-- **Dispositivos de acceso**: Dashboards web, reportes automáticos
-- **Necesidades principales**:
-  - Métricas de uso de instalaciones
-  - Análisis de ingresos y costos operativos
-  - Reportes de performance del sistema
-  - Gestión de patrocinadores y publicidad
+#### 6. Patrocinadores y Socios Comerciales (Según enunciado)
+- **Descripción**: Usuarios del sistema de marketing y monetización (enunciado)
+- **Herramienta principal**: Pista LED como lienzo interactivo para publicidad (enunciado)
+- **Capacidades específicas**:
+  - Ubicaciones de patrocinios dinámicas y contextuales modificables sobre la marcha (enunciado)
+  - Visibilidad inigualable para anunciantes (enunciado)
+  - Gestión de diversos tipos de inventario publicitario (enunciado)
+  - Maximización del impacto comercial de campañas (enunciado)
+  - Mostrar logotipos del equipo y mensajes patrocinados (enunciado)
+- **Beneficio**: Contenido de marca en toda la superficie de la cancha (enunciado)
+
+#### 7. Clubes y Asociaciones (Según enunciado)
+- **Descripción**: Organizaciones deportivas beneficiarias del sistema (enunciado)
+- **Beneficio**: Nivel de participación y valor sin precedentes (enunciado)
+- **Aplicaciones**: Gestión de eventos deportivos con tecnología avanzada (enunciado)
+
+#### 8. Sistemas de Seguimiento de Terceros (Según enunciado)
+- **Ejemplos específicos**: Hawk-Eye y ShotTracker mencionados como socios (enunciado)
+- **Función**: Proporcionar datos de seguimiento de jugadores y balones (enunciado)
+- **Integración**: Independiente de cualquier socio específico (enunciado)
+- **Capacidad**: Integración con cualquier sistema existente del recinto o liga (enunciado)
 
 ### A.3 Usuarios Técnicos y de Soporte
 
-#### 7. Integradores de Sistemas de Terceros
+#### 9. Integradores de Sistemas de Terceros
 - **Descripción**: Desarrolladores que integran sistemas externos (Hawk-Eye, ShotTracker)
 - **Contexto de uso**: Integración y mantenimiento de APIs externas
 - **Nivel técnico**: Muy alto, especialistas en integración
@@ -104,22 +112,22 @@
 
 ## B) DEFINICIÓN DE NÚMERO Y TIPOS DE SERVICIOS POR USUARIO
 
-### B.1 Servicios para Atletas/Jugadores (8 servicios)
+### B.1 Servicios para Atletas/Jugadores (Basados en funcionalidades del enunciado)
 
-#### 1. **Servicio de Análisis de Rendimiento Personal**
-- **Funcionalidad**: Métricas individuales en tiempo real y históricas
-- **Información mostrada**: Velocidad, distancia, zonas de calor, precisión de tiro
-- **Interfaz**: Dashboard personalizado en app móvil
+#### 1. **Servicio de Seguimiento de Rendimiento en Tiempo Real** (enunciado)
+- **Funcionalidad**: Mostrar métricas de rendimiento en tiempo real directamente en la cancha
+- **Información mostrada**: Tiempo de reacción, velocidad, distancia recorrida, precisión de tiros (enunciado)
+- **Interfaz**: Visualización instantánea en la cancha para análisis inmediato (enunciado)
 
-#### 2. **Servicio de Retroalimentación Inmediata**
-- **Funcionalidad**: Feedback visual en cancha durante entrenamientos
-- **Información mostrada**: Trayectorias correctas, zonas objetivo, timing
-- **Interfaz**: Visualización directa en piso LED
+#### 2. **Servicio de Entornos Virtuales Dinámicos** (enunciado)
+- **Funcionalidad**: Proyectar animaciones de "defensores virtuales" (enunciado) 
+- **Información mostrada**: Escenarios de entrenamiento gamificados (enunciado)
+- **Interfaz**: Cancha puede crear escenarios para perfeccionar habilidades (enunciado)
 
-#### 3. **Servicio de Gamificación de Entrenamientos**
-- **Funcionalidad**: Ejercicios interactivos con elementos de juego
-- **Información mostrada**: Puntuaciones, challenges, rankings
-- **Interfaz**: App móvil + visualizaciones en cancha
+#### 3. **Servicio de Desarrollo de Habilidades Específicas** (enunciado)
+- **Funcionalidad**: Ayudar a perfeccionar velocidad, agilidad y visión periférica (enunciado)
+- **Información mostrada**: Ejercicios interactivos y feedback visual
+- **Interfaz**: Sistema integrado de cancha inteligente
 
 #### 4. **Servicio de Comparación y Benchmarking**
 - **Funcionalidad**: Comparación con otros jugadores y estándares profesionales

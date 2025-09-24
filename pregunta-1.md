@@ -9,16 +9,21 @@
 ### 1.1 Capacidades de Suministro de Energía para el Piso LED
 
 #### Consumo Máximo del Sistema
-- **Densidad de energía máxima**: >570 W/m² para tecnología LumiFlex
-- **Área de cancha estándar**: 420 m² (baloncesto) - 800 m² (instalaciones grandes)
-- **Consumo total máximo**: 239.4 kW (cancha estándar) - 456 kW (instalación grande)
-- **Tipo de conexión**: CA trifásica, 400V para instalaciones de 800 m²
-- **Factor de demanda**: El sistema debe soportar condiciones de carga máxima (pantalla blanco sólido)
+- **Densidad de energía máxima**: >570 W/m² para tecnología LumiFlex (según enunciado)
+- **Área de cancha estándar**: 420 m² (baloncesto estándar según enunciado)
+- **Área de instalación grande**: 800 m² (según enunciado para pisos grandes)
+- **Consumo total máximo**: 
+  - Cancha estándar (420 m²): 239.4 kW (570 × 420 = 239,400 W)
+  - Instalación grande (800 m²): 456 kW (570 × 800 = 456,000 W)
+- **Tipo de conexión**: CA trifásica con salida de 400 voltios (según enunciado para 800 m²)
+- **Factor de demanda**: Condiciones de carga máxima como mostrar blanco sólido (según enunciado)
 
 #### Consumo Promedio Operacional
-- **Densidad promedio**: 190 W/m² durante operación normal
-- **Consumo promedio**: 79.8 kW (cancha estándar) - 152 kW (instalación grande)
-- **Eficiencia operacional**: 33.3% del consumo máximo para gestión de costos y generación de calor
+- **Densidad promedio**: 190 W/m² durante operación normal (según enunciado)
+- **Consumo promedio**: 
+  - Cancha estándar (420 m²): 79.8 kW (190 × 420 = 79,800 W)
+  - Instalación grande (800 m²): 152 kW (190 × 800 = 152,000 W)
+- **Eficiencia operacional**: 33.3% del consumo máximo (190/570) para administrar costos operativos y generación de calor (según enunciado)
 
 #### Alimentación de Componentes Críticos
 - **Edge Servers**: 
@@ -56,11 +61,12 @@
 
 ### 2.1 Latencia de Extremo a Extremo (Percepción del Usuario)
 
-#### Requisitos Críticos
-- **Objetivo principal**: <100 ms para interacciones en tiempo real
-- **Umbral aceptable**: <150 ms para aplicaciones no críticas
-- **Umbral crítico**: <20 ms para interacciones de entrenamiento fluidas
-- **Experiencia óptima**: <50 ms para la mayoría de aplicaciones interactivas
+#### Requisitos Críticos (Según enunciado específico)
+- **Objetivo principal**: <100 ms para interacciones fluidas e instantáneas (enunciado)
+- **Umbral aceptable**: Hasta 150 ms marginalmente aceptable para animaciones en descansos (enunciado)
+- **Umbral crítico**: <20 ms ideal para interacciones fluidas (enunciado)
+- **Experiencia óptima**: <50 ms generalmente aceptable para aplicaciones interactivas (enunciado)
+- **Meta del sistema**: Significativamente inferior a 100 ms para elementos interactivos (enunciado)
 
 #### Casos de Uso Específicos
 - **Seguimiento de jugadores en tiempo real**: <100 ms
@@ -71,10 +77,11 @@
 ### 2.2 Latencia del Sistema de Seguimiento
 
 #### Sistemas Ópticos (Cámaras de Alta Velocidad)
-- **Rango objetivo**: <50 ms desde detección hasta datos disponibles
-- **Rendimiento óptimo**: 15-52 ms (basado en sistemas de seguimiento ocular)
-- **Frecuencia de captura**: 240-1000 fps para deportes de alta velocidad
-- **Procesamiento de imagen**: Algoritmos optimizados para detección en tiempo real
+- **Rango objetivo**: Pocas decenas de milisegundos, preferiblemente <50 ms (enunciado)
+- **Rendimiento documentado**: 15-52 ms para sistemas de seguimiento ocular (enunciado)
+- **Frecuencia de captura**: Altas velocidades de fotogramas para seguimiento preciso (enunciado)
+- **Procesamiento**: Software de visión artificial para triangulación 3D (enunciado)
+- **Impacto**: Latencia alta afecta capacidad de respuesta del suelo LED (enunciado)
 
 #### Sistemas Basados en Sensores (IMU/RFID)
 - **Latencia de sensor**: <20 ms para IMU en jugadores
@@ -84,12 +91,12 @@
 
 ### 2.3 Latencia de Procesamiento (Edge Computing)
 
-#### Edge Server Performance
-- **Objetivo principal**: <10 ms para procesamiento local
-- **Capacidad de CPU**: Procesamiento de datos de sensores en tiempo real
-- **Capacidad de GPU**: Aceleración de algoritmos de visión artificial y IA/ML
-- **Memoria RAM**: Buffer suficiente para procesamiento sin bloqueos
-- **Almacenamiento NVMe**: Acceso rápido a algoritmos y modelos
+#### Edge Server Performance (Especificaciones del enunciado)
+- **Objetivo principal**: Milisegundos de un solo dígito bajo, idealmente <10 ms (enunciado)
+- **Configuración de CPU**: CPU de alto rendimiento para control del sistema, tráfico de red y procesamiento de datos (enunciado)
+- **Configuración de GPU**: GPU de alto rendimiento para acelerar visión artificial, análisis IA/ML y renderizado (enunciado)
+- **Memoria y almacenamiento**: Alta velocidad adecuados para alto rendimiento de datos en tiempo real (enunciado)
+- **Interfaces de red**: Alta velocidad esenciales para demandas de procesamiento en tiempo real (enunciado)
 
 #### Algoritmos de Procesamiento
 - **Detección de objetos**: <5 ms por frame para IA optimizada
@@ -99,11 +106,12 @@
 
 ### 2.4 Latencia de Red
 
-#### Red de Área Local (LAN)
-- **Backbone de red**: <5 ms entre Edge servers y controladores LED
-- **Protocolo recomendado**: Ethernet Gigabit (1 Gbps) mínimo
-- **Infraestructura**: Switches dedicados para tráfico de tiempo real
-- **QoS (Quality of Service)**: Priorización de tráfico crítico
+#### Red de Área Local (LAN) - Especificaciones del enunciado
+- **Latencia objetivo**: Idealmente <5-10 ms dentro de la LAN que conecta Edge server al piso LED (enunciado)
+- **Infraestructura requerida**: Rápida y confiable, ejemplo Ethernet (enunciado)
+- **Consideración 5G**: Potencialmente 5G para conexiones inalámbricas (enunciado)
+- **Impacto**: Latencia alta puede introducir retrasos significativos si se transfieren datos sin procesar (enunciado)
+- **Beneficio Edge**: Edge processing mitiga esto reduciendo datos enviados por red (enunciado)
 
 #### Comunicación Inalámbrica
 - **WiFi 6/6E**: <10 ms para sensores móviles
@@ -112,11 +120,13 @@
 
 ### 2.5 Latencia del Sistema de Visualización
 
-#### Controladores LED
-- **Frecuencia de actualización**: 3840 Hz mínimo para eliminar parpadeo
-- **Latencia de frame**: 1-2 frames de retraso (20-40 ms a 50-60 fps)
-- **Resolución de color**: Procesamiento en tiempo real sin degradación
-- **Sincronización**: Sincronía perfecta entre múltiples paneles LED
+#### Controladores LED (Especificaciones exactas del enunciado)
+- **Latencia de pantallas profesionales**: 1-2 cuadros de retraso (enunciado)
+- **Velocidades de cuadro**: 50-60 fps comunes (o más altas hasta 240 fps para alta velocidad) (enunciado)
+- **Latencia equivalente**: ~20-40 ms (1 cuadro a 50 fps = 20 ms, 2 cuadros = 40 ms) (enunciado)
+- **Frecuencia de actualización**: 3840 Hz fundamental para imágenes fluidas sin parpadeos (enunciado)
+- **Importancia**: Crítico para grabación con cámaras alta velocidad o visualización humana (enunciado)
+- **Sincronización**: Retroalimentación visual sincronizada con acciones de atleta (enunciado)
 
 #### Optimizaciones de Rendimiento
 - **Buffer de video**: Minimizado para reducir latencia

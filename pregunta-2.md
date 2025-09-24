@@ -8,40 +8,34 @@
 
 ### A.1 Nodos Sensores
 
-#### Sistemas de Seguimiento Óptico
-**Número de unidades**: 8-16 cámaras por cancha estándar
-- **Tipo**: Cámaras de alta velocidad para seguimiento 3D
-- **Especificaciones técnicas**:
-  - Resolución: 1920x1080 mínimo, preferible 4K
-  - Frecuencia de captura: 240-1000 fps
-  - Sensor: CMOS de alta sensibilidad
-  - Lente: Gran angular con corrección de distorsión
-- **Ubicación**: Perímetro superior del estadio con ángulos de cobertura optimizados
-- **Interfaz de comunicación**: Ethernet Gigabit (GigE Vision)
-- **Alimentación**: PoE+ (Power over Ethernet) 60W por unidad
+#### Sistemas de Seguimiento Óptico (Según enunciado)
+**Descripción**: Múltiples cámaras de alta velocidad ubicadas estratégicamente en el estadio (enunciado)
+- **Función**: Capturan video a altas velocidades de fotogramas para seguimiento preciso y triangulación 3D (enunciado)
+- **Ubicación**: Alrededor del estadio desde diferentes ángulos (enunciado)
+- **Procesamiento**: Software de visión artificial procesa datos de video para ubicación precisa 3D (enunciado)
+- **Ejemplos mencionados**: Hawk-Eye como sistema ampliamente utilizado (enunciado)
+- **Integración**: Los datos se introducen en GlassCourt OS para mostrar gráficos dinámicos (enunciado)
+- **Outputs**: Trayectorias de jugadores, zonas de tiro, superposiciones estadísticas (enunciado)
+- **Número**: Múltiples cámaras según cobertura necesaria y objetos a rastrear (enunciado)
 
-#### Sensores Inerciales en Jugadores (IMU - Inertial Measurement Units)
-**Número de unidades**: 10-12 sensores por equipo (máximo 24 por partido)
-- **Tipo**: IMU de 9 grados de libertad (9-DOF)
-- **Componentes integrados**:
-  - Acelerómetro 3-axis: ±16g con resolución 16-bit
-  - Giroscopio 3-axis: ±2000°/s con resolución 16-bit
-  - Magnetómetro 3-axis: ±4900μT
-- **Frecuencia de muestreo**: 500 Hz mínimo
-- **Comunicación**: BLE 5.0 o protocolo propietario de baja latencia
-- **Batería**: Autonomía mínima 4 horas de juego continuo
-- **Factor de forma**: Wearable integrado en uniforme o calzado
+#### Sensores Basados en Red de Anclaje (Según enunciado)
+**Descripción**: Red de sensores de anclaje ubicados en las instalaciones (enunciado)
+- **Función**: Comunicarse con pequeñas etiquetas de seguimiento que llevan los jugadores (enunciado)
+- **Ejemplo específico**: ShotTracker como socio de ASB mencionado en enunciado
+- **Implementación**: Dispositivos de captura colocados en la cancha (enunciado)
+- **Jugadores**: Cada jugador lleva un sensor para localización continua (enunciado)
+- **Balón**: Sensores integrados en el balón para rastrear posición y velocidad de giro (enunciado)
+- **Integración**: Datos se transfieren al sistema operativo GlassCourt (enunciado)
+- **Capacidades**: Proyectar diagramas de entrenamiento en tiempo real (enunciado)
+- **Ejemplo de uso**: Entrenador dibuja jugada en iPad → aparece como trayectoria iluminada (enunciado)
 
-#### Sensores de Balón
-**Número de unidades**: 2-4 balones instrumentados por partido
-- **Tipo**: Sensor IMU miniaturizado + chip de posicionamiento
-- **Especificaciones**:
-  - IMU 6-DOF integrado en el centro del balón
-  - Sensor de presión para detectar contactos
-  - Chip UWB (Ultra-Wideband) para posicionamiento preciso
-- **Comunicación**: UWB + BLE para redundancia
-- **Batería**: Carga inalámbrica, autonomía 8 horas
-- **Resistencia**: IPX7 para resistencia a impactos y humedad
+#### Unidades de Medición Inercial (IMU) Portátiles (Según enunciado)
+**Descripción**: IMU portátiles instalados en jugadores y balón (enunciado)
+- **Función**: Proporcionar datos precisos de movimiento en tiempo real (enunciado)
+- **Ubicación**: En jugadores y en el balón (enunciado)  
+- **Propósito**: Complementar los sistemas ópticos para seguimiento completo (enunciado)
+- **Integración**: Forma parte del ecosistema de múltiples fuentes de datos (enunciado)
+- **Beneficio**: Datos de movimiento directo sin depender solo de visión artificial (enunciado)
 
 #### Anclas de Posicionamiento UWB
 **Número de unidades**: 12-20 anclas por cancha
@@ -56,16 +50,13 @@
 
 ### A.2 Nodos Actuadores
 
-#### Sistema LED de Visualización Principal
-**Número de módulos**: Variable según resolución y tamaño
-- **Configuración LumiFlex (Alta resolución)**:
-  - Densidad: 2.5mm pixel pitch
-  - Módulos por m²: 160-200 módulos
-  - Total para cancha 420 m²: 67,200-84,000 módulos
-- **Configuración Líneas Básicas**:
-  - LEDs RGB integrados en tiras
-  - Resolución: 10mm pixel pitch
-  - Total: 8,400-10,500 módulos
+#### Sistema LED de Visualización (Según especificaciones del enunciado)
+**Actuadores en forma de matrices LED** (enunciado):
+- **LumiFlex**: Matriz de alta densidad para versión avanzada (enunciado)
+- **Señalización básica**: Tiras LED integradas más sencillas para líneas multideportivas (enunciado)
+- **Determinación de cantidad**: Depende directamente del tamaño de cancha y resolución deseada (enunciado)
+- **Integración**: Sincronización perfecta con pantallas LED y cubos de video (enunciado)
+- **Control**: Sistema operativo GlassCourt controla LEDs para mostrar imágenes dinámicas (enunciado)
 
 #### Especificaciones Técnicas de LEDs
 - **Tipo**: LED SMD RGB de alta potencia
@@ -96,12 +87,11 @@
 
 ### B.1 Incertidumbre Espacial
 
-#### Seguimiento de Posición de Jugadores
-- **Objetivo establecido**: <10 cm en todas las dimensiones (X, Y, Z)
-- **Desglose por sistema**:
-  - Sistema óptico (cámaras): ±5 cm en plano XY, ±8 cm en Z
-  - Sistema UWB: ±3 cm en plano XY, ±5 cm en Z
-  - Fusión de sensores: ±2 cm combinado (mejora mediante filtro Kalman)
+#### Seguimiento de Posición de Jugadores (Requisito específico del enunciado)
+- **Objetivo del sistema**: Incertidumbre espacial inferior a 10 centímetros para seguimiento de posición (enunciado)
+- **Propósito**: Garantizar visualización fiable de ubicaciones de jugadores y balón (enunciado)
+- **Importancia**: Para que las mediciones de sensores sean útiles, incertidumbre debe ser mínima (enunciado)
+- **Aplicación**: Seguimiento preciso tanto de jugadores como del balón en la cancha (enunciado)
 
 #### Seguimiento de Balón
 - **Objetivo mejorado**: <5 cm para trayectoria
@@ -118,13 +108,11 @@
 
 ### B.2 Incertidumbre Temporal
 
-#### Sincronización Global del Sistema
-- **Objetivo establecido**: <20 ms entre todas las fuentes de datos
-- **Implementación**:
-  - Reloj maestro distribuido via PTP (Precision Time Protocol)
-  - Sincronización de cámaras: ±1 ms
-  - Sincronización de sensores IMU: ±5 ms
-  - Compensación de latencias de red: Algoritmos adaptativos
+#### Sincronización Temporal del Sistema (Requisito del enunciado)
+- **Objetivo del sistema**: Incertidumbre temporal inferior a 20 milisegundos (enunciado)
+- **Propósito**: Mantener sincronización precisa de datos de diversas fuentes (enunciado)
+- **Importancia**: Requisito fundamental para rendimiento constante del sistema (enunciado)
+- **Aplicación**: Coordinar datos de múltiples sistemas de seguimiento simultáneos (enunciado)
 
 #### Timestamp Accuracy
 - **Resolución temporal**: 1 ms mínimo
@@ -149,12 +137,11 @@
 
 ### C.1 Precisión del Sistema de Visualización LED
 
-#### Precisión Espacial de Píxeles
-- **Objetivo establecido**: Precisión submilimétrica
-- **Especificaciones técnicas**:
-  - Tolerancia de posición por LED: ±0.5 mm
-  - Planitud del piso: ±1 mm en superficie total
-  - Alineación entre módulos: ±0.2 mm
+#### Precisión de Actuadores LED (Requisitos del enunciado)
+- **Objetivo del sistema**: Precisión de píxeles submilimétrica (enunciado)
+- **Propósito**: Obtener gráficos nítidos y salida visual fluida en toda la cancha (enunciado)
+- **Requerimiento**: Controladores LED y sistemas de control de alta calidad (enunciado)
+- **Aplicación**: Salida visual precisa para toda la superficie de la cancha (enunciado)
 
 #### Precisión de Color y Brillo
 - **Uniformidad de color**: ΔE <2.0 (imperceptible al ojo humano)
@@ -192,23 +179,25 @@
 
 ### D.1 Arquitectura de Edge Computing
 
-#### Número de Edge Nodes Requeridos
-- **Configuración mínima**: 1 Edge Node potente para funciones básicas
-- **Configuración óptima**: 3-5 Edge Nodes para LumiFlex con seguimiento
-- **Distribución de carga**:
-  - Node 1: Procesamiento de video y visión artificial
-  - Node 2: Fusión de sensores y tracking algorithms
-  - Node 3: Renderizado gráfico y control LED
-  - Nodes 4-5: Redundancia y balanceamiento de carga
+#### Número de Edge Nodes Requeridos (Especificaciones exactas del enunciado)
+- **Cantidad no estática**: Depende de factores clave que determinan escalabilidad y fiabilidad (enunciado)
+- **Configuración mínima**: Un único nodo de borde potente para funciones básicas como cambiar configuraciones estáticas de líneas (enunciado)  
+- **Configuración avanzada**: Múltiples Edge nodes para LumiFlex de alta resolución con seguimiento en tiempo real (enunciado)
+- **Distribución de cargas computacionales**:
+  - Ingesta de datos de cámaras de alta velocidad (enunciado)
+  - Ejecución de algoritmos de IA y aprendizaje automático para análisis (enunciado)
+  - Representación de contenido visual complejo (enunciado)
+- **Factores determinantes**: Tamaño físico de cancha y resolución requerida (enunciado)
 
 ### D.2 Especificaciones por Edge Node
 
-#### Capacidad de CPU
-- **Procesador**: Intel Xeon o AMD EPYC (server-grade)
-- **Núcleos**: 16-32 cores físicos mínimo
-- **Frecuencia**: 2.8-3.5 GHz base, boost hasta 4.5 GHz
-- **Cache**: L3 cache 32-64 MB
-- **Arquitectura**: x86_64 con extensiones AVX-512 para procesamiento vectorial
+#### Especificaciones de Edge Node (Según enunciado)
+**Potente nodo de borde equipado con CPU y GPU de alto rendimiento** (enunciado):
+- **CPU de alto rendimiento**: Gestiona control del sistema, tráfico de red y procesamiento de datos (enunciado)
+- **GPU de alto rendimiento**: Acelera visión artificial, análisis de IA/ML y tareas de renderizado (enunciado)
+- **Memoria de alta velocidad**: Adecuada para soportar alto rendimiento de datos (enunciado)
+- **Almacenamiento de alta velocidad**: Esencial para demandas de procesamiento en tiempo real (enunciado)  
+- **Interfaces de red de alta velocidad**: Esenciales para soportar alto rendimiento de datos en tiempo real (enunciado)
 
 #### Capacidad de GPU para Aceleración
 - **GPU principal**: NVIDIA RTX A6000 o superior
