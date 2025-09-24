@@ -10,23 +10,33 @@
 
 #### Sistemas de Seguimiento Óptico (Según enunciado)
 **Descripción**: Múltiples cámaras de alta velocidad ubicadas estratégicamente en el estadio (enunciado)
+- **Número estimado**: 12-16 cámaras para cancha estándar (420 m²)
+- **Frecuencia de captura**: 240-1000 fps para seguimiento de alta velocidad
+- **Resolución**: 1920x1080 mínimo por cámara (2.1 MP)
+- **Volumen de datos**: ~25-100 GB/minuto por cámara (sin comprimir)
 - **Función**: Capturan video a altas velocidades de fotogramas para seguimiento preciso y triangulación 3D (enunciado)
 - **Ubicación**: Alrededor del estadio desde diferentes ángulos (enunciado)
 - **Procesamiento**: Software de visión artificial procesa datos de video para ubicación precisa 3D (enunciado)
 - **Ejemplos mencionados**: Hawk-Eye como sistema ampliamente utilizado (enunciado)
 - **Integración**: Los datos se introducen en GlassCourt OS para mostrar gráficos dinámicos (enunciado)
 - **Outputs**: Trayectorias de jugadores, zonas de tiro, superposiciones estadísticas (enunciado)
-- **Número**: Múltiples cámaras según cobertura necesaria y objetos a rastrear (enunciado)
+- **Latencia típica**: 15-52 ms según enunciado para sistemas similares
 
 #### Sensores Basados en Red de Anclaje (Según enunciado)
 **Descripción**: Red de sensores de anclaje ubicados en las instalaciones (enunciado)
+- **Número de anclas**: 16-24 dispositivos por cancha estándar (420 m²)
+- **Sensores por jugador**: 1 sensor wearable por jugador (máximo 24 por partido)
+- **Sensores en balón**: 1-2 sensores integrados por balón
+- **Frecuencia de muestreo**: 100-500 Hz por sensor
+- **Alcance de comunicación**: 50-100 metros por ancla
+- **Precisión de distancia**: ±10 cm (cumple objetivo <10 cm del enunciado)
 - **Función**: Comunicarse con pequeñas etiquetas de seguimiento que llevan los jugadores (enunciado)
 - **Ejemplo específico**: ShotTracker como socio de ASB mencionado en enunciado
 - **Implementación**: Dispositivos de captura colocados en la cancha (enunciado)
 - **Jugadores**: Cada jugador lleva un sensor para localización continua (enunciado)
 - **Balón**: Sensores integrados en el balón para rastrear posición y velocidad de giro (enunciado)
 - **Integración**: Datos se transfieren al sistema operativo GlassCourt (enunciado)
-- **Capacidades**: Proyectar diagramas de entrenamiento en tiempo real (enunciado)
+- **Volumen de datos**: ~50-250 KB/s por sensor activo
 - **Ejemplo de uso**: Entrenador dibuja jugada en iPad → aparece como trayectoria iluminada (enunciado)
 
 #### Unidades de Medición Inercial (IMU) Portátiles (Según enunciado)
@@ -52,11 +62,22 @@
 
 #### Sistema LED de Visualización (Según especificaciones del enunciado)
 **Actuadores en forma de matrices LED** (enunciado):
-- **LumiFlex**: Matriz de alta densidad para versión avanzada (enunciado)
-- **Señalización básica**: Tiras LED integradas más sencillas para líneas multideportivas (enunciado)
+- **LumiFlex (Alta densidad)**:
+  - Pixel pitch: 2.5-5 mm
+  - Densidad: 40,000-160,000 LEDs/m²
+  - Total cancha 420 m²: 16.8-67.2 millones de LEDs
+  - Consumo: >570 W/m² máximo (enunciado)
+- **Señalización básica**: 
+  - Pixel pitch: 8-12 mm  
+  - Densidad: 6,900-15,600 LEDs/m²
+  - Total cancha 420 m²: 2.9-6.6 millones de LEDs
+  - Consumo: 190 W/m² promedio (enunciado)
+- **Controladores necesarios**: 100-500 unidades según resolución
+- **Módulos LED por controlador**: 50-200 módulos
 - **Determinación de cantidad**: Depende directamente del tamaño de cancha y resolución deseada (enunciado)
 - **Integración**: Sincronización perfecta con pantallas LED y cubos de video (enunciado)
 - **Control**: Sistema operativo GlassCourt controla LEDs para mostrar imágenes dinámicas (enunciado)
+- **Ancho de banda requerido**: 10-40 Gbps para actualización completa
 
 #### Especificaciones Técnicas de LEDs
 - **Tipo**: LED SMD RGB de alta potencia
@@ -89,8 +110,15 @@
 
 #### Seguimiento de Posición de Jugadores (Requisito específico del enunciado)
 - **Objetivo del sistema**: Incertidumbre espacial inferior a 10 centímetros para seguimiento de posición (enunciado)
+- **Especificaciones numéricas**:
+  - Precisión en plano XY: ±8 cm (cumple <10 cm)
+  - Precisión en altura Z: ±12 cm 
+  - Precisión de velocidad: ±0.5 m/s
+  - Área de cobertura: 100% de cancha (420 m²)
+  - Objetos simultáneos: 24 jugadores + 2 balones
 - **Propósito**: Garantizar visualización fiable de ubicaciones de jugadores y balón (enunciado)
 - **Importancia**: Para que las mediciones de sensores sean útiles, incertidumbre debe ser mínima (enunciado)
+- **Frecuencia de actualización**: 100-500 Hz para seguimiento fluido
 - **Aplicación**: Seguimiento preciso tanto de jugadores como del balón en la cancha (enunciado)
 
 #### Seguimiento de Balón
@@ -110,8 +138,16 @@
 
 #### Sincronización Temporal del Sistema (Requisito del enunciado)
 - **Objetivo del sistema**: Incertidumbre temporal inferior a 20 milisegundos (enunciado)
+- **Especificaciones numéricas**:
+  - Sincronización entre cámaras: ±2 ms
+  - Sincronización sensores-cámaras: ±5 ms
+  - Drift máximo de relojes: ±10 ms/hora
+  - Corrección automática: cada 100 ms
+  - Buffer temporal máximo: 50 ms
+- **Fuentes de datos simultáneas**: 12-16 cámaras + 24 sensores + sistemas externos
 - **Propósito**: Mantener sincronización precisa de datos de diversas fuentes (enunciado)
 - **Importancia**: Requisito fundamental para rendimiento constante del sistema (enunciado)
+- **Frecuencia de verificación**: 1000 Hz para detección de deriva
 - **Aplicación**: Coordinar datos de múltiples sistemas de seguimiento simultáneos (enunciado)
 
 #### Timestamp Accuracy
@@ -139,8 +175,16 @@
 
 #### Precisión de Actuadores LED (Requisitos del enunciado)
 - **Objetivo del sistema**: Precisión de píxeles submilimétrica (enunciado)
+- **Especificaciones numéricas**:
+  - Tolerancia de posición por LED: ±0.5 mm
+  - Planitud de superficie: ±1 mm en 420 m²
+  - Uniformidad de color: ΔE <2.0 (imperceptible)
+  - Uniformidad de brillo: ±3% en toda superficie
+  - Precisión geométrica: <1 píxel de error de mapeo
+- **Resolución total LumiFlex**: 67.2 millones de píxeles (420 m²)
 - **Propósito**: Obtener gráficos nítidos y salida visual fluida en toda la cancha (enunciado)
 - **Requerimiento**: Controladores LED y sistemas de control de alta calidad (enunciado)
+- **Frecuencia PWM**: 3,840 Hz mínimo para eliminación de flicker
 - **Aplicación**: Salida visual precisa para toda la superficie de la cancha (enunciado)
 
 #### Precisión de Color y Brillo
@@ -193,11 +237,30 @@
 
 #### Especificaciones de Edge Node (Según enunciado)
 **Potente nodo de borde equipado con CPU y GPU de alto rendimiento** (enunciado):
-- **CPU de alto rendimiento**: Gestiona control del sistema, tráfico de red y procesamiento de datos (enunciado)
-- **GPU de alto rendimiento**: Acelera visión artificial, análisis de IA/ML y tareas de renderizado (enunciado)
-- **Memoria de alta velocidad**: Adecuada para soportar alto rendimiento de datos (enunciado)
-- **Almacenamiento de alta velocidad**: Esencial para demandas de procesamiento en tiempo real (enunciado)  
-- **Interfaces de red de alta velocidad**: Esenciales para soportar alto rendimiento de datos en tiempo real (enunciado)
+- **CPU de alto rendimiento**: 
+  - 16-32 cores físicos (Intel Xeon/AMD EPYC)
+  - Frecuencia: 2.8-4.5 GHz
+  - Cache L3: 32-64 MB
+  - Gestiona control del sistema, tráfico de red y procesamiento de datos (enunciado)
+- **GPU de alto rendimiento**: 
+  - NVIDIA RTX A6000: 10,752 CUDA cores
+  - VRAM: 48 GB GDDR6
+  - Bandwidth: 768 GB/s
+  - Acelera visión artificial, análisis de IA/ML y tareas de renderizado (enunciado)
+- **Memoria de alta velocidad**: 
+  - 128-256 GB DDR4/DDR5 ECC
+  - Velocidad: 3200-4800 MHz
+  - Adecuada para soportar alto rendimiento de datos (enunciado)
+- **Almacenamiento de alta velocidad**: 
+  - 2-4 TB NVMe SSD PCIe 4.0
+  - IOPS: >1,000,000 acceso aleatorio
+  - Throughput: >7 GB/s lectura secuencial
+  - Esencial para demandas de procesamiento en tiempo real (enunciado)
+- **Interfaces de red de alta velocidad**: 
+  - Ethernet: 25-100 Gbps
+  - Puertos: 4-8 para redundancia
+  - Latencia: <1 ms en LAN
+  - Esenciales para soportar alto rendimiento de datos en tiempo real (enunciado)
 
 #### Capacidad de GPU para Aceleración
 - **GPU principal**: NVIDIA RTX A6000 o superior
@@ -229,6 +292,9 @@
 - **Throughput requerido**: 240-1000 fps por cámara
 - **Latencia objetivo**: <5 ms por frame
 - **Carga computacional**: 15-25 TFLOPS por cámara de alta velocidad
+- **Procesamiento total**: 12-16 cámaras × 20 TFLOPS = 240-320 TFLOPS
+- **Memoria requerida**: 8-16 GB VRAM por flujo de cámara
+- **Ancho de banda**: 25-100 GB/s por cámara para transferencia de frames
 
 #### Seguimiento Multi-Objeto (Multi-Object Tracking)
 - **Algoritmo**: DeepSORT o FairMOT optimizado
@@ -244,10 +310,13 @@
 
 #### Renderizado Gráfico en Tiempo Real
 - **Engine**: Unreal Engine 5 o motor personalizado
-- **Resolución**: 67-84 millones de píxeles
-- **Frame rate**: 60-240 fps
+- **Resolución**: 67-84 millones de píxeles (cancha 420 m²)
+- **Frame rate**: 60-240 fps según aplicación
 - **Efectos**: Particle systems, physics simulation, lighting
 - **Carga computacional**: 20-40 TFLOPS para renderizado completo
+- **Memoria de video**: 32-64 GB para buffers de renderizado
+- **Ancho de banda salida**: 40-160 Gbps hacia controladores LED
+- **Latencia total**: <16.7 ms (1 frame a 60 fps)
 
 ### D.4 Interfaces de Red de Alta Velocidad
 
@@ -298,9 +367,9 @@
 
 | Physical Layer Requirement | Especificación de requisitos |
 |---------------------------|------------------------------|
-| **Número y tipos de nodos sensores y actuadores** | **SENSORES:**<br/>• **Sistemas ópticos**: Múltiples cámaras de alta velocidad ubicadas estratégicamente en el estadio (enunciado)<br/>• **Sensores basados en red de anclaje**: Red de sensores ubicados en instalaciones para comunicarse con etiquetas de seguimiento (enunciado)<br/>• **IMU portátiles**: Unidades de medición inercial instalados en jugadores y balón para datos precisos de movimiento en tiempo real (enunciado)<br/>• **Integración con terceros**: Sistemas como Hawk-Eye y ShotTracker mencionados específicamente (enunciado)<br/><br/>**ACTUADORES:**<br/>• **Matrices LED LumiFlex**: Matriz de alta densidad para versión avanzada (enunciado)<br/>• **Tiras LED básicas**: Integradas más sencillas para señalización de líneas multideportivas (enunciado)<br/>• **Cantidad variable**: Depende directamente del tamaño de cancha y resolución de pantalla deseada (enunciado) |
-| **Target uncertainty (incertidumbre objetivo), relacionada con las cantidades físicas medidas por cada sensor** | **INCERTIDUMBRE ESPACIAL:**<br/>• **Objetivo del sistema**: <10 centímetros para seguimiento de posición de jugadores y balón (enunciado)<br/>• **Propósito**: Garantizar visualización fiable de ubicaciones (enunciado)<br/>• **Requisito fundamental**: Para que mediciones de sensores sean útiles, incertidumbre debe ser mínima (enunciado)<br/><br/>**INCERTIDUMBRE TEMPORAL:**<br/>• **Objetivo del sistema**: <20 milisegundos para sincronización precisa (enunciado)<br/>• **Aplicación**: Mantener sincronización de datos de diversas fuentes (enunciado)<br/>• **Importancia**: Alta repetibilidad requisito fundamental para rendimiento constante (enunciado) |
-| **Target accuracy and precision (Exactitud y precisión objetivo) de los actuadores** | **PRECISIÓN DE ACTUADORES LED:**<br/>• **Objetivo específico**: Precisión de píxeles submilimétrica (enunciado)<br/>• **Propósito**: Obtener gráficos nítidos y salida visual fluida en toda la cancha (enunciado)<br/>• **Requerimiento técnico**: Controladores LED y sistemas de control de alta calidad (enunciado)<br/>• **Frecuencia de actualización**: 3840 Hz fundamental para imágenes fluidas sin parpadeos (enunciado)<br/>• **Latencia de visualización**: 1-2 cuadros de retraso equivalente a ~20-40 ms (enunciado)<br/>• **Sincronización**: Retroalimentación visual sincronizada con acciones de atleta y flujo del juego (enunciado) |
-| **Processing Power (Esfuerzo computacional) para los algoritmos de procesamiento de datos que se implementarán en el Edge node** | **ESPECIFICACIONES DE EDGE NODE:**<br/>• **CPU de alto rendimiento**: Gestiona control del sistema, tráfico de red y procesamiento de datos (enunciado)<br/>• **GPU de alto rendimiento**: Acelera visión artificial, análisis de IA/ML y tareas de renderizado (enunciado)<br/>• **Memoria de alta velocidad**: Adecuada para soportar alto rendimiento de datos en tiempo real (enunciado)<br/>• **Almacenamiento de alta velocidad**: Esencial para demandas de procesamiento en tiempo real (enunciado)<br/>• **Interfaces de red de alta velocidad**: Esenciales para alto rendimiento de datos (enunciado)<br/><br/>**CONFIGURACIÓN VARIABLE:**<br/>• **Configuración mínima**: Un único nodo potente para funciones básicas como líneas estáticas (enunciado)<br/>• **Configuración avanzada**: Múltiples Edge nodes para LumiFlex con seguimiento en tiempo real (enunciado)<br/>• **Cargas computacionales**: Ingesta de cámaras alta velocidad, algoritmos IA/ML, renderizado visual complejo (enunciado)<br/>• **Factores determinantes**: Tamaño físico de cancha y resolución de pantalla requerida (enunciado) |
+| **Número y tipos de nodos sensores y actuadores** | **SENSORES (Aproximaciones numéricas):**<br/>• **Sistemas ópticos**: 12-16 cámaras de alta velocidad (240-1000 fps) ubicadas estratégicamente (enunciado)<br/>• **Sensores de anclaje**: 16-24 anclas por cancha (420 m²) para comunicarse con etiquetas de seguimiento (enunciado)<br/>• **IMU portátiles**: 24 sensores para jugadores + 2 para balones, frecuencia 100-500 Hz (enunciado)<br/>• **Volumen total de datos**: ~300-1,200 GB/minuto sin procesar<br/><br/>**ACTUADORES (Aproximaciones numéricas):**<br/>• **LumiFlex**: 16.8-67.2 millones de LEDs (pixel pitch 2.5-5 mm) para cancha 420 m² (enunciado)<br/>• **LED básicos**: 2.9-6.6 millones de LEDs (pixel pitch 8-12 mm) para líneas multideportivas (enunciado)<br/>• **Controladores**: 100-500 unidades según resolución<br/>• **Consumo energético**: 239.4 kW máximo (570 W/m² × 420 m²) según enunciado |
+| **Target uncertainty (incertidumbre objetivo), relacionada con las cantidades físicas medidas por cada sensor** | **INCERTIDUMBRE ESPACIAL (Aproximaciones numéricas):**<br/>• **Objetivo**: <10 cm para seguimiento de posición (enunciado)<br/>• **Precisión XY**: ±8 cm para cumplir objetivo<br/>• **Precisión Z**: ±12 cm en altura<br/>• **Precisión velocidad**: ±0.5 m/s<br/>• **Cobertura**: 100% de cancha (420 m²)<br/>• **Objetos simultáneos**: 24 jugadores + 2 balones<br/><br/>**INCERTIDUMBRE TEMPORAL (Aproximaciones numéricas):**<br/>• **Objetivo**: <20 ms para sincronización (enunciado)<br/>• **Sincronización cámaras**: ±2 ms<br/>• **Sincronización sensores**: ±5 ms<br/>• **Drift máximo**: ±10 ms/hora<br/>• **Frecuencia verificación**: 1000 Hz<br/>• **Fuentes simultáneas**: 40+ dispositivos de captura |
+| **Target accuracy and precision (Exactitud y precisión objetivo) de los actuadores** | **PRECISIÓN ACTUADORES LED (Aproximaciones numéricas):**<br/>• **Objetivo**: Precisión submilimétrica de píxeles (enunciado)<br/>• **Tolerancia posición**: ±0.5 mm por LED<br/>• **Planitud superficie**: ±1 mm en 420 m²<br/>• **Uniformidad color**: ΔE <2.0 (imperceptible)<br/>• **Uniformidad brillo**: ±3% en toda superficie<br/>• **Resolución total**: 67.2 millones píxeles (LumiFlex)<br/>• **Frecuencia PWM**: 3,840 Hz mínimo (enunciado)<br/>• **Latencia visualización**: 20-40 ms (1-2 frames a 50-60 fps) según enunciado<br/>• **Precisión geométrica**: <1 píxel error de mapeo<br/>• **Ancho de banda salida**: 40-160 Gbps hacia LEDs |
+| **Processing Power (Esfuerzo computacional) para los algoritmos de procesamiento de datos que se implementarán en el Edge node** | **ESPECIFICACIONES EDGE NODE (Aproximaciones numéricas):**<br/>• **CPU**: 16-32 cores (2.8-4.5 GHz), Cache L3: 32-64 MB, gestiona control del sistema (enunciado)<br/>• **GPU**: NVIDIA RTX A6000 (10,752 CUDA cores), 48 GB VRAM, 768 GB/s, acelera IA/ML (enunciado)<br/>• **Memoria**: 128-256 GB DDR4/DDR5 ECC (3200-4800 MHz) para alto rendimiento (enunciado)<br/>• **Almacenamiento**: 2-4 TB NVMe SSD PCIe 4.0 (>7 GB/s, >1M IOPS) para tiempo real (enunciado)<br/>• **Red**: 25-100 Gbps Ethernet, 4-8 puertos redundantes, <1 ms latencia (enunciado)<br/><br/>**CARGAS COMPUTACIONALES (Aproximaciones numéricas):**<br/>• **Visión artificial**: 240-320 TFLOPS total (12-16 cámaras × 20 TFLOPS)<br/>• **Renderizado**: 20-40 TFLOPS para 67M píxeles a 60-240 fps<br/>• **Configuración mínima**: 1 nodo (líneas estáticas) según enunciado<br/>• **Configuración avanzada**: 3-5 nodos (LumiFlex + seguimiento) según enunciado<br/>• **Consumo total**: 800-1200W por nodo bajo carga máxima |
 
 ---
