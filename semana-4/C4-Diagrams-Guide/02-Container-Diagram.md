@@ -64,58 +64,83 @@ Un contenedor IoT representa una **unidad ejecutable** en el ecosistema:
 - Puertos y tecnologías
 - Flujo de datos
 
-## Plantilla PlantUML
+## Diagrama con Mermaid
 
-```plantuml
-@startuml Container_Diagram
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
-
-title Sistema IoT de Monitoreo Agrícola - Diagrama de Contenedores
-
-Person(farmer, "Agricultor", "Usuario que monitorea cultivos")
-Person(technician, "Técnico", "Mantiene sensores")
-
-System_Boundary(iot_system, "Sistema IoT Agrícola") {
-    Container(mobile_app, "App Móvil", "React Native", "Permite monitoreo en tiempo real y configuración de alertas")
-    Container(web_app, "Dashboard Web", "React.js", "Panel de control para técnicos y análisis avanzado")
-    Container(api_gateway, "API Gateway", "Node.js + Express", "Punto de entrada unificado para todas las APIs")
-    Container(device_service, "Servicio de Dispositivos", "Python + FastAPI", "Gestiona comunicación con sensores IoT")
-    Container(data_processor, "Procesador de Datos", "Python + Celery", "Procesa y analiza datos de sensores")
-    Container(notification_service, "Servicio de Notificaciones", "Node.js", "Envía alertas y notificaciones")
-    ContainerDb(time_series_db, "Base de Datos de Series Temporales", "InfluxDB", "Almacena datos históricos de sensores")
-    ContainerDb(operational_db, "Base de Datos Operacional", "PostgreSQL", "Configuración, usuarios, dispositivos")
-    Container(message_broker, "Message Broker", "Redis/RabbitMQ", "Cola de mensajes para procesamiento asíncrono")
-}
-
-System_Ext(iot_devices, "Sensores IoT", "ESP32 con sensores ambientales")
-System_Ext(weather_api, "API Meteorológica", "Servicio externo de clima")
-System_Ext(email_service, "Servicio Email", "SendGrid/AWS SES")
-
-' Relaciones con usuarios
-Rel(farmer, mobile_app, "Usa", "HTTPS")
-Rel(technician, web_app, "Administra", "HTTPS")
-
-' Relaciones entre contenedores
-Rel(mobile_app, api_gateway, "Hace llamadas API", "HTTPS/REST")
-Rel(web_app, api_gateway, "Hace llamadas API", "HTTPS/REST")
-Rel(api_gateway, device_service, "Rutea requests", "HTTP/REST")
-Rel(api_gateway, notification_service, "Rutea requests", "HTTP/REST")
-
-Rel(device_service, operational_db, "Lee/Escribe", "SQL")
-Rel(device_service, time_series_db, "Escribe datos", "HTTP/InfluxQL")
-Rel(device_service, message_broker, "Publica eventos", "Redis/AMQP")
-
-Rel(data_processor, message_broker, "Consume eventos", "Redis/AMQP")
-Rel(data_processor, time_series_db, "Lee/Escribe", "HTTP/InfluxQL")
-Rel(data_processor, notification_service, "Triggers alertas", "HTTP/REST")
-
-Rel(notification_service, email_service, "Envía emails", "HTTPS/API")
-
-' Relaciones con sistemas externos
-Rel(iot_devices, device_service, "Envía datos", "MQTT/HTTP")
-Rel(data_processor, weather_api, "Obtiene datos", "HTTPS/REST")
-
-@enduml
+```mermaid
+graph TB
+    subgraph "👥 Usuarios"
+        U1[👤 Agricultor]
+        U2[👤 Técnico]
+    end
+    
+    subgraph "📱 Frontend Layer"
+        F1[📱 App Móvil<br/>React Native<br/>Monitoreo en tiempo real]
+        F2[🌐 Dashboard Web<br/>React.js<br/>Panel de control técnico]
+    end
+    
+    subgraph "🔗 API Gateway"
+        A1[🚪 API Gateway<br/>Node.js + Express<br/>Punto de entrada unificado]
+    end
+    
+    subgraph "⚙️ Business Services"
+        B1[🔧 Servicio Dispositivos<br/>Python + FastAPI<br/>Gestión sensores IoT]
+        B2[📊 Procesador Datos<br/>Python + Celery<br/>Análisis de sensores]
+        B3[🔔 Servicio Notificaciones<br/>Node.js<br/>Alertas multi-canal]
+    end
+    
+    subgraph "💾 Data Layer"
+        D1[📈 InfluxDB<br/>Time Series<br/>Datos históricos sensores]
+        D2[🗄️ PostgreSQL<br/>Operational DB<br/>Config, usuarios, dispositivos]
+        D3[📨 Redis/RabbitMQ<br/>Message Broker<br/>Cola mensajes asíncrona]
+    end
+    
+    subgraph "🌐 External Systems"
+        E1[📡 Sensores IoT<br/>ESP32<br/>Sensores ambientales]
+        E2[🌤️ API Meteorológica<br/>Datos climáticos externos]
+        E3[📧 Servicio Email<br/>SendGrid/AWS SES<br/>Notificaciones]
+    end
+    
+    %% User interactions
+    U1 -->|HTTPS| F1
+    U2 -->|HTTPS| F2
+    
+    %% Frontend to API
+    F1 -->|HTTPS/REST| A1
+    F2 -->|HTTPS/REST| A1
+    
+    %% API to Services
+    A1 -->|HTTP/REST| B1
+    A1 -->|HTTP/REST| B3
+    
+    %% Service interactions
+    B1 -->|SQL| D2
+    B1 -->|InfluxQL| D1
+    B1 -->|AMQP| D3
+    
+    B2 -->|AMQP| D3
+    B2 -->|InfluxQL| D1
+    B2 -->|HTTP/REST| B3
+    
+    B3 -->|HTTPS/API| E3
+    
+    %% External connections
+    E1 -->|MQTT| B1
+    B2 -->|HTTPS/REST| E2
+    
+    %% Estilos
+    classDef userStyle fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef frontendStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef apiStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    classDef serviceStyle fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef dataStyle fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef externalStyle fill:#fff8e1,stroke:#fbc02d,stroke-width:2px
+    
+    class U1,U2 userStyle
+    class F1,F2 frontendStyle
+    class A1 apiStyle
+    class B1,B2,B3 serviceStyle
+    class D1,D2,D3 dataStyle
+    class E1,E2,E3 externalStyle
 ```
 
 ## Ejemplo Visual (Texto)
@@ -273,82 +298,38 @@ Dispositivos → Message Broker → Procesadores → Notificaciones
 3. **Planificar** la infraestructura y despliegue
 4. **Documentar** APIs y interfaces entre contenedores
 
-### Visualización en GitHub
+### Ventajas del diagrama Mermaid para IoT
 
-Para visualizar este diagrama en GitHub, tienes varias opciones:
+#### ✅ **Arquitectura en capas claramente definida:**
+- **Frontend Layer**: Interfaces de usuario (móvil y web)
+- **API Gateway**: Punto único de entrada y gestión de APIs
+- **Business Services**: Lógica específica de IoT (dispositivos, datos, notificaciones)
+- **Data Layer**: Almacenamiento especializado (time-series, operational, messaging)
+- **External Systems**: Integración con ecosistema IoT
 
-#### Opción 1: Servidor PlantUML público
-Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
+#### 🎨 **Personalización visual:**
+- **Colores diferenciados** por tipo de componente
+- **Iconos descriptivos** para mejor comprensión
+- **Protocolos específicos** en las conexiones
+- **Agrupación lógica** por responsabilidades
 
-#### Opción 2: Extensión VS Code
-Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
+#### � **Variantes para diferentes vistas:**
 
-#### Opción 3: Mermaid (alternativa que funciona en GitHub)
-GitHub soporta Mermaid nativamente. Versión del diagrama de contenedores:
-
+**Vista simplificada para ejecutivos:**
 ```mermaid
-graph TB
-    subgraph "👥 Usuarios"
-        U1[👤 Agricultor]
-        U2[👤 Técnico]
-    end
-    
-    subgraph "📱 Frontend Layer"
-        F1[📱 App Móvil<br/>React Native]
-        F2[🌐 Dashboard Web<br/>React.js]
-    end
-    
-    subgraph "🔗 API Layer"
-        A1[🚪 API Gateway<br/>Node.js + Express]
-    end
-    
-    subgraph "⚙️ Business Logic Layer"
-        B1[🔧 Servicio Dispositivos<br/>Python + FastAPI]
-        B2[📊 Procesador Datos<br/>Python + Celery]
-        B3[🔔 Servicio Notificaciones<br/>Node.js]
-    end
-    
-    subgraph "💾 Data Layer"
-        D1[📈 InfluxDB<br/>Time Series Data]
-        D2[🗄️ PostgreSQL<br/>Operational Data]
-        D3[📨 Redis/RabbitMQ<br/>Message Broker]
-    end
-    
-    subgraph "🌐 External Systems"
-        E1[📡 Sensores IoT<br/>ESP32]
-        E2[🌤️ API Meteorológica]
-        E3[📧 Servicio Email]
-    end
-    
-    %% User interactions
-    U1 -->|HTTPS| F1
-    U2 -->|HTTPS| F2
-    
-    %% Frontend to API
-    F1 -->|REST/HTTPS| A1
-    F2 -->|REST/HTTPS| A1
-    
-    %% API to Services
-    A1 -->|HTTP| B1
-    A1 -->|HTTP| B3
-    
-    %% Service interactions
-    B1 -->|SQL| D2
-    B1 -->|InfluxQL| D1
-    B1 -->|AMQP| D3
-    
-    B2 -->|AMQP| D3
-    B2 -->|InfluxQL| D1
-    B2 -->|HTTP| B3
-    
-    B3 -->|HTTPS| E3
-    
-    %% External connections
-    E1 -->|MQTT| B1
-    B2 -->|HTTPS| E2
+graph LR
+    A[� Apps] --> B[🚪 API] --> C[⚙️ Servicios] --> D[💾 Datos]
+    E[📡 Dispositivos IoT] --> C
 ```
 
-**💡 Ventaja de Mermaid**: Se renderiza automáticamente en GitHub y permite mostrar la arquitectura distribuida típica de sistemas IoT.
+**Vista de flujo de datos:**
+```mermaid
+graph TD
+    A[📡 Sensores] --> B[📨 Message Queue]
+    B --> C[📊 Data Processor]
+    C --> D[📈 Time Series DB]
+    C --> E[� Notifications]
+```
 
 ---
 

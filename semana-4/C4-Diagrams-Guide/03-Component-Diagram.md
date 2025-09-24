@@ -42,57 +42,90 @@ Un componente IoT es una **unidad funcional especializada**:
 - Firmware estándar sin customización
 - Servicios con lógica trivial de paso de datos
 
-## Plantilla PlantUML
+## Diagrama con Mermaid
 
-```plantuml
-@startuml Component_Diagram
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
-
-title Servicio de Dispositivos IoT - Diagrama de Componentes
-
-Container(mobile_app, "App Móvil", "React Native", "App para monitoreo")
-Container(web_dashboard, "Dashboard Web", "React.js", "Panel administrativo")
-ContainerDb(postgres_db, "PostgreSQL", "Base de Datos", "Datos operacionales")
-ContainerDb(influx_db, "InfluxDB", "Time Series DB", "Datos de sensores")
-Container(mqtt_broker, "MQTT Broker", "Mosquitto", "Comunicación con dispositivos")
-Container(notification_service, "Servicio Notificaciones", "Node.js", "Envío de alertas")
-
-Container_Boundary(device_service, "Servicio de Dispositivos") {
-    Component(api_controller, "API Controller", "FastAPI", "Endpoints REST para dispositivos")
-    Component(device_manager, "Device Manager", "Python Class", "Lógica de negocio para dispositivos")
-    Component(data_validator, "Data Validator", "Pydantic", "Validación de datos de sensores")
-    Component(mqtt_handler, "MQTT Handler", "Paho MQTT", "Maneja comunicación MQTT")
-    Component(alert_engine, "Alert Engine", "Python Class", "Detecta condiciones de alerta")
-    Component(device_repository, "Device Repository", "SQLAlchemy", "Acceso a datos de dispositivos")
-    Component(sensor_repository, "Sensor Repository", "InfluxDB Client", "Acceso a datos de sensores")
-    Component(auth_middleware, "Auth Middleware", "JWT", "Autenticación y autorización")
-}
-
-System_Ext(iot_devices, "Dispositivos IoT", "Sensores ESP32")
-
-' Relaciones externas
-Rel(mobile_app, api_controller, "Llamadas API", "HTTPS/REST")
-Rel(web_dashboard, api_controller, "Llamadas API", "HTTPS/REST")
-Rel(iot_devices, mqtt_handler, "Envía datos", "MQTT")
-
-' Relaciones internas
-Rel(api_controller, auth_middleware, "Valida tokens", "JWT")
-Rel(api_controller, device_manager, "Delega lógica", "Método")
-Rel(device_manager, data_validator, "Valida datos", "Pydantic Schema")
-Rel(device_manager, device_repository, "CRUD dispositivos", "SQL")
-Rel(device_manager, sensor_repository, "Guarda lecturas", "InfluxQL")
-Rel(device_manager, alert_engine, "Evalúa alertas", "Método")
-
-Rel(mqtt_handler, data_validator, "Valida payload", "JSON Schema")
-Rel(mqtt_handler, device_manager, "Procesa datos", "Método")
-
-Rel(alert_engine, notification_service, "Envía alertas", "HTTP/REST")
-
-' Relaciones con almacenamiento
-Rel(device_repository, postgres_db, "Consultas SQL", "PostgreSQL")
-Rel(sensor_repository, influx_db, "Time Series", "InfluxDB")
-
-@enduml
+```mermaid
+graph TB
+    subgraph "📱 Aplicaciones Cliente"
+        A1[📱 App Móvil<br/>React Native]
+        A2[🌐 Dashboard Web<br/>React.js]
+    end
+    
+    subgraph "🔧 Servicio de Dispositivos IoT"
+        subgraph "🌐 API Layer"
+            C1[🚪 API Controller<br/>FastAPI<br/>Endpoints REST]
+            C8[🔒 Auth Middleware<br/>JWT<br/>Autenticación]
+        end
+        
+        subgraph "🧠 Business Logic"
+            C2[⚙️ Device Manager<br/>Lógica dispositivos<br/>Orchestration]
+            C3[✅ Data Validator<br/>Pydantic<br/>Validación schemas]
+            C4[🚨 Alert Engine<br/>Motor alertas<br/>Rules engine]
+        end
+        
+        subgraph "📡 Communication"
+            C5[📨 MQTT Handler<br/>Paho MQTT<br/>Pub/Sub messaging]
+        end
+        
+        subgraph "💾 Data Access"
+            C6[🗄️ Device Repository<br/>SQLAlchemy<br/>CRUD operations]
+            C7[📈 Sensor Repository<br/>InfluxDB Client<br/>Time series data]
+        end
+    end
+    
+    subgraph "💾 Bases de Datos"
+        D1[🗄️ PostgreSQL<br/>Devices & Config]
+        D2[📈 InfluxDB<br/>Sensor Data]
+    end
+    
+    subgraph "🌐 Sistemas Externos"
+        E1[📡 Dispositivos IoT<br/>ESP32/Sensores]
+        E2[🔔 Servicio Notificaciones<br/>Alertas & Emails]
+    end
+    
+    %% External connections
+    A1 -->|HTTPS/REST| C1
+    A2 -->|HTTPS/REST| C1
+    E1 -->|MQTT| C5
+    
+    %% API Layer flow
+    C1 --> C8
+    C8 --> C2
+    
+    %% Business Logic flow
+    C2 --> C3
+    C2 --> C4
+    C2 --> C6
+    C2 --> C7
+    
+    %% MQTT flow
+    C5 --> C3
+    C3 --> C7
+    C3 --> C4
+    
+    %% Alert flow
+    C4 --> E2
+    
+    %% Data access
+    C6 --> D1
+    C7 --> D2
+    
+    %% Estilos
+    classDef clientStyle fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef apiStyle fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef businessStyle fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef commStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef dataStyle fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef dbStyle fill:#fff8e1,stroke:#fbc02d,stroke-width:2px
+    classDef externalStyle fill:#ffebee,stroke:#d32f2f,stroke-width:2px
+    
+    class A1,A2 clientStyle
+    class C1,C8 apiStyle
+    class C2,C3,C4 businessStyle
+    class C5 commStyle
+    class C6,C7 dataStyle
+    class D1,D2 dbStyle
+    class E1,E2 externalStyle
 ```
 
 ## Ejemplo Visual (Texto)
@@ -296,83 +329,38 @@ class DeviceController:
 3. **Validar** que las dependencias reales coincidan con el diagrama
 4. **Continuar** con [Diagrama de Código](./04-Code-Diagram.md) si es necesario
 
-### Visualización en GitHub
+### Características del diagrama Mermaid para IoT
 
-Para visualizar este diagrama en GitHub, tienes varias opciones:
+#### ✅ **Separación clara de responsabilidades:**
+- **API Layer**: Entrada de requests y autenticación
+- **Business Logic**: Orchestración, validación y alertas
+- **Communication**: Manejo específico de protocolos IoT (MQTT)
+- **Data Access**: Persistencia especializada (SQL + Time Series)
 
-#### Opción 1: Servidor PlantUML público
-Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
+#### 🎨 **Ventajas visuales:**
+- **Agrupación por capas** facilita comprensión arquitectónica
+- **Colores diferenciados** por tipo de responsabilidad
+- **Flujos claramente marcados** entre componentes
+- **Iconos descriptivos** para mejor identificación
 
-#### Opción 2: Extensión VS Code
-Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
+#### 📊 **Variantes del diagrama:**
 
-#### Opción 3: Mermaid (alternativa que funciona en GitHub)
-Versión simplificada del diagrama de componentes para un Servicio de Dispositivos IoT:
-
+**Vista de flujo de datos simplificada:**
 ```mermaid
-graph TB
-    subgraph "📱 Aplicaciones Externas"
-        A1[App Móvil]
-        A2[Dashboard Web]
-    end
-    
-    subgraph "🔧 Servicio de Dispositivos IoT"
-        subgraph "🌐 API Layer"
-            C1[API Controller<br/>FastAPI<br/>Endpoints REST]
-        end
-        
-        subgraph "🧠 Business Logic"
-            C2[Device Manager<br/>Lógica de dispositivos]
-            C3[Data Validator<br/>Validación Pydantic]
-            C4[Alert Engine<br/>Motor de alertas]
-        end
-        
-        subgraph "📡 Communication"
-            C5[MQTT Handler<br/>Paho MQTT<br/>Pub/Sub]
-        end
-        
-        subgraph "💾 Data Access"
-            C6[Device Repository<br/>SQLAlchemy<br/>CRUD operations]
-            C7[Sensor Repository<br/>InfluxDB Client<br/>Time series data]
-        end
-        
-        subgraph "🔒 Security"
-            C8[Auth Middleware<br/>JWT<br/>Authentication]
-        end
-    end
-    
-    subgraph "💾 Bases de Datos"
-        D1[PostgreSQL<br/>Devices & Config]
-        D2[InfluxDB<br/>Sensor Data]
-    end
-    
-    subgraph "📡 Externos"
-        E1[Dispositivos IoT<br/>ESP32/MQTT]
-        E2[Servicio Notificaciones]
-    end
-    
-    %% External connections
-    A1 -->|HTTPS/REST| C1
-    A2 -->|HTTPS/REST| C1
-    E1 -->|MQTT| C5
-    
-    %% Internal flow
-    C1 --> C8
-    C8 --> C2
-    C2 --> C3
-    C2 --> C4
-    C2 --> C6
-    C2 --> C7
-    C5 --> C3
-    C3 --> C4
-    C4 --> E2
-    
-    %% Data access
-    C6 --> D1
-    C7 --> D2
+graph LR
+    A[📡 IoT Devices] -->|MQTT| B[📨 MQTT Handler]
+    B --> C[✅ Validator] --> D[💾 Data Store]
+    C --> E[🚨 Alert Engine] --> F[🔔 Notifications]
 ```
 
-**💡 Ventaja**: Muestra claramente la separación de responsabilidades típica en arquitecturas IoT con capas de API, lógica de negocio, comunicación y acceso a datos.
+**Vista de capas de seguridad:**
+```mermaid
+graph TB
+    A[🌐 Public API] --> B[🔒 Auth Layer]
+    B --> C[🛡️ Business Logic]
+    C --> D[🔐 Data Access]
+    D --> E[� Encrypted Storage]
+```
 
 ---
 

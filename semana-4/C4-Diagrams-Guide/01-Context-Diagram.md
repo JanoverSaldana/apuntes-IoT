@@ -36,52 +36,49 @@ El diagrama de contexto IoT muestra el ecosistema completo del sistema, incluyen
 - Etiquetas descriptivas de lo que se intercambia
 - Protocolo o tecnología (opcional en este nivel)
 
-## Plantilla PlantUML
+## Diagrama con Mermaid
 
-```plantuml
-@startuml Context_Diagram
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
-
-title Sistema IoT de Monitoreo Agrícola - Diagrama de Contexto
-
-Person(farmer, "Agricultor", "Usuario principal que monitorea cultivos")
-Person(technician, "Técnico", "Mantiene y calibra sensores")
-Person(manager, "Gerente", "Analiza datos y toma decisiones")
-
-System(iot_system, "Sistema IoT Agrícola", "Monitorea condiciones del cultivo y automatiza riego")
-
-System_Ext(weather_service, "Servicio Meteorológico", "Proporciona datos climáticos")
-System_Ext(email_system, "Sistema de Email", "Envía notificaciones y alertas")
-System_Ext(mobile_push, "Servicio Push", "Notificaciones móviles")
-
-Rel(farmer, iot_system, "Monitorea cultivos\nConfigura alertas", "App móvil")
-Rel(technician, iot_system, "Mantiene sensores\nCalibra dispositivos", "Panel web")
-Rel(manager, iot_system, "Analiza tendencias\nGenera reportes", "Dashboard")
-
-Rel(iot_system, weather_service, "Obtiene pronósticos", "API REST")
-Rel(iot_system, email_system, "Envía alertas", "SMTP")
-Rel(iot_system, mobile_push, "Notificaciones urgentes", "Push API")
-
-@enduml
+```mermaid
+graph TB
+    subgraph "👥 Usuarios del Sistema"
+        A[👤 Agricultor<br/>Monitorea cultivos<br/>Configura alertas]
+        B[👤 Técnico<br/>Mantiene sensores<br/>Calibra dispositivos]
+        C[👤 Gerente<br/>Analiza datos<br/>Toma decisiones]
+    end
+    
+    subgraph "🌱 Sistema Principal"
+        D[🏭 Sistema IoT Agrícola<br/><br/>• Monitoreo de cultivos<br/>• Automatización de riego<br/>• Análisis de datos<br/>• Alertas inteligentes]
+    end
+    
+    subgraph "🌐 Sistemas Externos"
+        E[🌤️ Servicio Meteorológico<br/>Datos climáticos<br/>Pronósticos]
+        F[📧 Sistema de Email<br/>Notificaciones<br/>Reportes]
+        G[📱 Servicio Push<br/>Alertas móviles<br/>Notificaciones urgentes]
+    end
+    
+    %% Interacciones con usuarios
+    A -->|App móvil| D
+    B -->|Panel web| D
+    C -->|Dashboard| D
+    
+    %% Integraciones externas
+    D -->|API REST| E
+    D -->|SMTP| F
+    D -->|Push API| G
+    
+    %% Estilos
+    classDef userStyle fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef systemStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    classDef externalStyle fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    
+    class A,B,C userStyle
+    class D systemStyle
+    class E,F,G externalStyle
 ```
 
 ### Visualización en GitHub
 
-Para visualizar este diagrama en GitHub, tienes varias opciones:
-
-#### Opción 1: Servidor PlantUML público
-Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
-
-#### Opción 2: Extensión VS Code
-Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
-
-#### Opción 3: Imagen generada
-```
-![Diagrama de Contexto](http://www.plantuml.com/plantuml/svg/[ENCODED_DIAGRAM])
-```
-
-#### Opción 4: Mermaid (alternativa que funciona en GitHub)
-GitHub soporta Mermaid nativamente. Versión simplificada del diagrama de contexto:
+El diagrama de contexto se visualiza automáticamente en GitHub usando Mermaid:
 
 ```mermaid
 graph TB
@@ -110,7 +107,33 @@ graph TB
     D -->|Push API| G
 ```
 
-**💡 Ventaja de Mermaid**: Se renderiza automáticamente en GitHub sin configuración adicional.
+### Características del diagrama Mermaid
+
+#### ✅ **Ventajas para sistemas IoT:**
+- **Renderizado automático en GitHub**: Sin configuración adicional
+- **Agrupación clara**: Usuarios, sistema principal y servicios externos
+- **Iconos descriptivos**: Mejoran la comprensión visual
+- **Estilos diferenciados**: Colores que distinguen tipos de elementos
+- **Información contextual**: Descripción de responsabilidades
+
+#### 📝 **Variantes para diferentes audiencias:**
+
+**Para ejecutivos (simplificado):**
+```mermaid
+graph LR
+    A[👥 Usuarios] --> B[🌱 Sistema IoT<br/>Agrícola] 
+    B --> C[🌐 Servicios<br/>Externos]
+```
+
+**Para desarrolladores (con protocolos):**
+```mermaid
+graph TB
+    A[Mobile App] -->|HTTPS/REST| B[IoT Platform]
+    C[Web Panel] -->|HTTPS/REST| B
+    B -->|REST API| D[Weather Service]
+    B -->|SMTP| E[Email Service]
+    B -->|WebSocket| F[Push Service]
+```
 
 ## Ejemplo Visual (Texto)
 

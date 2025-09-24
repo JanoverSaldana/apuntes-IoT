@@ -58,182 +58,9 @@ El diagrama de código IoT muestra implementaciones específicas de algoritmos c
 - Lógica de control y automatización
 - Algoritmos de calibración y compensación
 
-## Plantilla PlantUML - Class Diagram
+## Diagrama de Clases con Mermaid
 
-```plantuml
-@startuml Code_Diagram_Classes
-title Device Manager - Diagrama de Clases
-
-interface IDeviceRepository {
-    +find_by_id(device_id: str): Device
-    +find_by_user(user_id: str): List[Device]
-    +save(device: Device): Device
-    +delete(device_id: str): bool
-}
-
-interface ISensorDataRepository {
-    +save_reading(device_id: str, data: SensorData): bool
-    +get_latest_readings(device_id: str, limit: int): List[SensorData]
-    +get_time_range(device_id: str, start: datetime, end: datetime): List[SensorData]
-}
-
-class Device {
-    -id: str
-    -name: str
-    -type: DeviceType
-    -user_id: str
-    -location: Location
-    -status: DeviceStatus
-    -created_at: datetime
-    -last_seen: datetime
-    +__init__(name: str, type: DeviceType, user_id: str)
-    +is_online(): bool
-    +update_last_seen(): void
-    +to_dict(): dict
-}
-
-class SensorData {
-    -device_id: str
-    -timestamp: datetime
-    -temperature: float
-    -humidity: float
-    -battery_level: float
-    +__init__(device_id: str, **sensor_values)
-    +validate(): bool
-    +to_influx_point(): Point
-}
-
-class DeviceManager {
-    -device_repo: IDeviceRepository
-    -sensor_repo: ISensorDataRepository
-    -alert_engine: AlertEngine
-    -validator: DataValidator
-    
-    +__init__(device_repo: IDeviceRepository, sensor_repo: ISensorDataRepository)
-    +register_device(device_data: dict): Device
-    +get_user_devices(user_id: str): List[Device]
-    +process_sensor_data(device_id: str, data: dict): bool
-    +get_device_status(device_id: str): DeviceStatus
-    -_validate_device_data(data: dict): bool
-    -_check_device_exists(device_id: str): bool
-}
-
-class AlertEngine {
-    -rules: List[AlertRule]
-    -notification_service: INotificationService
-    
-    +add_rule(rule: AlertRule): void
-    +evaluate_data(device_id: str, data: SensorData): List[Alert]
-    +process_alerts(alerts: List[Alert]): void
-}
-
-class DataValidator {
-    +validate_sensor_data(data: dict): ValidationResult
-    +validate_device_config(config: dict): ValidationResult
-    -_check_required_fields(data: dict, fields: List[str]): bool
-    -_validate_ranges(data: dict): bool
-}
-
-enum DeviceType {
-    TEMPERATURE_SENSOR
-    HUMIDITY_SENSOR
-    MULTI_SENSOR
-    ACTUATOR
-}
-
-enum DeviceStatus {
-    ONLINE
-    OFFLINE
-    ERROR
-    MAINTENANCE
-}
-
-' Relaciones
-DeviceManager --> IDeviceRepository : uses
-DeviceManager --> ISensorDataRepository : uses
-DeviceManager --> AlertEngine : uses
-DeviceManager --> DataValidator : uses
-DeviceManager --> Device : manages
-DeviceManager --> SensorData : processes
-
-Device --> DeviceType : has
-Device --> DeviceStatus : has
-
-AlertEngine --> SensorData : evaluates
-DataValidator --> SensorData : validates
-
-@enduml
-```
-
-## Plantilla PlantUML - Sequence Diagram
-
-```plantuml
-@startuml Code_Diagram_Sequence
-title Procesamiento de Datos de Sensor - Diagrama de Secuencia
-
-actor "IoT Device" as device
-participant "MQTT Handler" as mqtt
-participant "Device Manager" as manager
-participant "Data Validator" as validator
-participant "Device Repository" as device_repo
-participant "Sensor Repository" as sensor_repo
-participant "Alert Engine" as alerts
-participant "Notification Service" as notifications
-
-device -> mqtt: publish sensor_data
-activate mqtt
-
-mqtt -> manager: process_sensor_data(device_id, data)
-activate manager
-
-manager -> validator: validate_sensor_data(data)
-activate validator
-validator -> validator: check_required_fields()
-validator -> validator: validate_ranges()
-validator --> manager: ValidationResult(valid=True)
-deactivate validator
-
-manager -> device_repo: find_by_id(device_id)
-activate device_repo
-device_repo --> manager: Device
-deactivate device_repo
-
-alt device exists
-    manager -> sensor_repo: save_reading(device_id, sensor_data)
-    activate sensor_repo
-    sensor_repo --> manager: success
-    deactivate sensor_repo
-    
-    manager -> alerts: evaluate_data(device_id, sensor_data)
-    activate alerts
-    alerts -> alerts: check_rules()
-    alerts --> manager: List[Alert]
-    
-    alt alerts found
-        alerts -> notifications: send_alerts(alerts)
-        activate notifications
-        notifications --> alerts: success
-        deactivate notifications
-    end
-    deactivate alerts
-    
-    manager -> device_repo: update_last_seen(device_id)
-    activate device_repo
-    device_repo --> manager: success
-    deactivate device_repo
-    
-else device not found
-    manager --> mqtt: error("Device not found")
-end
-
-manager --> mqtt: success
-deactivate manager
-
-mqtt --> device: ack
-deactivate mqtt
-
-@enduml
-```
+## Diagrama de Secuencia con Mermaid
 
 ## Ejemplo en Python
 
@@ -475,16 +302,10 @@ def process_sensor_data(self, device_id: str, data: dict) -> bool:
 pyreverse -o png -p DeviceManager src/device/
 ```
 
-### ☕ **Java**
-```bash
-# PlantUML desde JavaDoc
-javadoc -doclet net.sourceforge.plantuml.PlantUMLDoclet
-```
-
 ### 🏗️ **IDE Integrations**
-- **PyCharm**: Diagrams plugin
-- **VS Code**: PlantUML extension
-- **IntelliJ**: UML diagrams integrado
+- **VS Code**: Mermaid preview extension
+- **PyCharm**: Mermaid plugin
+- **IntelliJ**: Mermaid diagrams support
 
 ## Casos de Uso Específicos
 
@@ -525,34 +346,16 @@ javadoc -doclet net.sourceforge.plantuml.PlantUMLDoclet
 - name: Generate Code Diagrams
   run: |
     pyreverse -o png -p IoTSystem src/
-    plantuml docs/*.puml
 ```
 
 ### 📝 **Documentation as Code**
-```python
-# En el código fuente
-"""
-@startuml
-class DeviceManager {
-    +process_sensor_data()
-    +get_user_devices()
-}
-@enduml
-"""
-```
+Los diagramas Mermaid se integran directamente en el código fuente y documentación sin herramientas adicionales.
 
-### Visualización en GitHub
+### Visualización Nativa en GitHub
 
-Para visualizar este diagrama en GitHub, tienes varias opciones:
+**✅ Ventaja principal**: Mermaid se renderiza automáticamente en GitHub sin configuración adicional.
 
-#### Opción 1: Servidor PlantUML público
-Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
-
-#### Opción 2: Extensión VS Code
-Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
-
-#### Opción 3: Mermaid (alternativa que funciona en GitHub)
-Diagrama de clases simplificado para un Driver de Sensor IoT:
+### Diagrama de Clases IoT con Mermaid
 
 ```mermaid
 classDiagram

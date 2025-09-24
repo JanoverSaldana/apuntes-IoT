@@ -31,50 +31,59 @@ El modelo C4 adaptado para IoT muestra estos niveles de abstracción:
 5. **[05-IoT-Examples.md](./05-IoT-Examples.md)** - Ejemplos específicos para IoT ✅
 6. **[GitHub-Visualization.md](./GitHub-Visualization.md)** - 🔧 **Guía para visualizar en GitHub**
 
-### 📄 Archivos PlantUML (.puml):
-- `context-diagram.puml` - Diagrama base de contexto
-- `container-diagram.puml` - Diagrama base de contenedores  
-- `component-diagram.puml` - Diagrama base de componentes
-- `code-diagram.puml` - Diagrama base de código
-- `smart-agriculture-context.puml` - Ejemplo agricultura (contexto)
-- `smart-agriculture-container.puml` - Ejemplo agricultura (contenedores)
+### 🎨 **Tipos de diagramas Mermaid incluidos:**
+- **Flowchart**: Para contexto y flujos de contenedores
+- **Graph**: Para arquitecturas distribuidas IoT
+- **Class Diagram**: Para diagramas de código
+- **State Diagram**: Para máquinas de estado de dispositivos
+- **Sequence Diagram**: Para protocolos de comunicación IoT
 
-> ✅ **Todos los niveles incluyen opciones de visualización para GitHub**
-> - PlantUML para desarrollo local
-> - Mermaid para visualización nativa en GitHub  
-> - Archivos .puml para edición colaborativa
+> ✅ **Todos los niveles usan Mermaid exclusivamente**
+> - ✅ Renderizado automático en GitHub
+> - ✅ Sintaxis simple y mantenible
+> - ✅ Orientación específica para sistemas IoT
+> - ✅ Colaboración sin herramientas externas
 
-## Herramientas Recomendadas
+## Herramienta Principal: Mermaid
 
-### Para PlantUML:
-- **VS Code + PlantUML Extension**: Preview en tiempo real durante desarrollo
-- **PlantUML Server**: http://www.plantuml.com/plantuml/uml/ para visualización web
-- **IntelliJ IDEA Plugin**: Integración nativa con IDEs JetBrains
+### 🎯 **¿Por qué Mermaid para IoT?**
+- **Soporte nativo en GitHub**: Se renderiza automáticamente sin configuración
+- **Sintaxis simple**: Fácil de escribir y mantener
+- **Flexibilidad**: Soporta múltiples tipos de diagramas (flowcharts, sequence, class, state)
+- **Colaborativo**: Editable directamente en archivos Markdown
+- **Sin dependencias**: No requiere servidores externos
 
-### Alternativas Online:
-- **Draw.io (diagrams.net)**: Editor visual gratuito con plantillas C4
-- **Lucidchart**: Herramienta profesional con colaboración
-- **Miro/Mural**: Para colaboración en equipo y workshops
+### 🛠️ **Herramientas de Desarrollo:**
+- **VS Code + Mermaid Preview**: Extension para preview en tiempo real
+- **Mermaid Live Editor**: https://mermaid.live/ para pruebas rápidas
+- **GitHub**: Renderizado automático en README y documentación
+- **GitLab**: Soporte nativo similar a GitHub
 
-### Software Especializado:
-- **Structurizr**: Herramienta oficial del modelo C4 (DSL propio)
-- **Enterprise Architect**: Para documentación completa de arquitectura
+### 🎨 **Herramientas Complementarias:**
+- **Draw.io (diagrams.net)**: Para diagramas muy complejos o presentaciones
+- **Excalidraw**: Para sketches y wireframes colaborativos
+- **Lucidchart**: Para documentación empresarial formal
 
 ## 🔧 Configuración para GitHub
 
-### Problema: PlantUML no se renderiza automáticamente en GitHub
+### ✅ **Ventaja: Mermaid funciona nativamente en GitHub**
 
-### ✅ **Soluciones recomendadas:**
+GitHub renderiza automáticamente los diagramas Mermaid sin configuración adicional:
 
-1. **Usar extensión VS Code PlantUML** para desarrollo local
-2. **Exportar imágenes PNG/SVG** y subirlas al repositorio
-3. **Usar Mermaid** como alternativa (GitHub lo soporta nativamente)
-4. **Usar servicios como PlantUML Server** para generar URLs de imágenes
-
-### Ejemplo de integración con GitHub:
 ```markdown
-![Diagrama](http://www.plantuml.com/plantuml/svg/[código_codificado])
+```mermaid
+graph TB
+    A[Dispositivos IoT] --> B[Gateway]
+    B --> C[Cloud Platform]
+    C --> D[Dashboard]
 ```
+```
+
+### 🚀 **Workflow recomendado:**
+1. **Desarrollo**: VS Code + Mermaid Preview extension
+2. **Colaboración**: Editar directamente en GitHub
+3. **Presentaciones**: Exportar desde Mermaid Live Editor
+4. **Documentación**: Todo en Markdown con bloques Mermaid
 
 ## Principios Clave
 
