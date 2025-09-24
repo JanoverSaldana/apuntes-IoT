@@ -6,9 +6,17 @@
 
 ## A) DEFINICIÓN DE USUARIOS FINALES
 
-### A.1 Usuarios Primarios del Sistema
+### 1. Entrenadores y Cuerpo Técnico
+- **Descripción**: Usuarios principales del componente más avanzado del sistema (enunciado)
+- **Herramienta principal**: Pizarra en la cancha accesible por aplicación de tableta (enunciado)
+- **Capacidades específicas**:
+  - Dibujar tácticas y ejercicios directamente en la cancha en tiempo real (enunciado)
+  - Crear entornos virtuales dinámicos y escenarios gamificados (enunciado)
+  - Acceder a seguimiento del rendimiento y estadísticas de atletas (enunciado)
+  - Visualizar métricas de rendimiento en tiempo real directamente en la cancha (enunciado)
+- **Ejemplo de uso**: Dibujar jugada en iPad que aparece como trayectoria iluminada en la cancha (enunciado)
 
-#### 1. Atletas/Jugadores (Según enunciado)
+### 2. Atletas/Jugadores
 - **Descripción**: Destinatarios de retroalimentación en tiempo real y análisis de rendimiento (enunciado)
 - **Contexto de uso**: Entrenamientos con seguimiento de jugadores para retroalimentación inmediata (enunciado)
 - **Beneficios del sistema**:
@@ -17,31 +25,16 @@
   - Perfeccionar habilidades como velocidad, agilidad y visión periférica (enunciado)
   - Entrenamientos gamificados con defensores virtuales (enunciado)
 
-#### 2. Entrenadores y Cuerpo Técnico (Según enunciado)  
-- **Descripción**: Usuarios principales del componente más avanzado del sistema (enunciado)
-- **Herramienta principal**: Pizarra en la cancha accesible por aplicación de tableta (enunciado)
-- **Capacidades específicas**:
-  - Dibujar tácticas y ejercicios directamente en la cancha en tiempo real (enunciado)
-  - Crear entornos virtuales dinámicos y escenarios gamificados (enunciado)
-  - Acceder a seguimiento del rendimiento y estadísticas de atletas (enunciado)
-  - Visualizar métricas de rendimiento en tiempo real directamente en la cancha (enunciado)
-- **Ejemplo de uso**: Dibujar jugada en iPad que aparece como trayectoria iluminada (enunciado)
+### 3. Árbitros y Oficiales
+- **Descripción**: Personal encargado de hacer cumplir las reglas durante competiciones oficiales
+- **Necesidades principales**: 
+  - Asistencia para decisiones arbitrales críticas
+  - Acceso a replay instantáneos y análisis de jugadas controversiales
+  - Comunicación eficiente con mesa de control técnico
+  - Herramientas de cronometraje y marcador automático
 
-#### 3. Árbitros y Oficiales
-- **Descripción**: Personal encargado de hacer cumplir las reglas durante competiciones
-- **Contexto de uso**: Partidos oficiales y eventos deportivos
-- **Nivel técnico**: Especializado en reglas deportivas
-- **Dispositivos de acceso**: Interfaces dedicadas, displays de cancha
-- **Necesidades principales**:
-  - Asistencia para decisiones arbitrales
-  - Replay instant áneos y análisis de jugadas
-  - Comunicación con mesa de control
-  - Cronometraje y marcador automático
-
-### A.2 Usuarios Secundarios del Sistema
-
-#### 4. Operadores de Instalaciones (Según enunciado)
-- **Descripción**: Usuarios del módulo de Control y Gestión del sistema (enunciado)  
+### 4. Operadores de Instalaciones
+- **Descripción**: Usuarios del módulo de Control y Gestión del sistema (enunciado)
 - **Herramientas principales**:
   - Navegador de cancha: Aplicación principal para controlar GlassFloor fácilmente (enunciado)
   - Panel de inicio de aplicaciones: Acceso instantáneo a juegos y activaciones (enunciado)
@@ -50,211 +43,123 @@
   - Cambiar entre diferentes diseños predefinidos (enunciado)
   - Añadir logotipos de patrocinadores y gráficos personalizados (enunciado)
   - Compatibilidad multideportiva para diversos deportes (enunciado)
-  - Cambio rápido y fluido entre deportes con diferentes dimensiones (enunciado)
 
-#### 5. Aficionados/Espectadores (Según enunciado)
+### 5. Aficionados/Espectadores
 - **Descripción**: Beneficiarios de entretenimiento y participación mejorada (enunciado)
-- **Contexto**: Eventos en vivo con experiencia mejorada (enunciado)
 - **Herramientas del sistema**:
   - Animaciones dinámicas durante presentaciones y descansos (enunciado)
   - Minijuegos interactivos durante inactividad (enunciado)
   - Narrativa visual que combina datos de rendimiento con gráficos dinámicos (enunciado)
-- **Beneficio**: Nivel de participación y valor sin precedentes (enunciado)
-- **Objetivo**: Fomentar participación en todos los niveles (enunciado)
-
-#### 6. Patrocinadores y Socios Comerciales (Según enunciado)
-- **Descripción**: Usuarios del sistema de marketing y monetización (enunciado)
-- **Herramienta principal**: Pista LED como lienzo interactivo para publicidad (enunciado)
-- **Capacidades específicas**:
-  - Ubicaciones de patrocinios dinámicas y contextuales modificables sobre la marcha (enunciado)
-  - Visibilidad inigualable para anunciantes (enunciado)
-  - Gestión de diversos tipos de inventario publicitario (enunciado)
-  - Maximización del impacto comercial de campañas (enunciado)
-  - Mostrar logotipos del equipo y mensajes patrocinados (enunciado)
-- **Beneficio**: Contenido de marca en toda la superficie de la cancha (enunciado)
-
-#### 7. Clubes y Asociaciones (Según enunciado)
-- **Descripción**: Organizaciones deportivas beneficiarias del sistema (enunciado)
-- **Beneficio**: Nivel de participación y valor sin precedentes (enunciado)
-- **Aplicaciones**: Gestión de eventos deportivos con tecnología avanzada (enunciado)
-
-#### 8. Sistemas de Seguimiento de Terceros (Según enunciado)
-- **Ejemplos específicos**: Hawk-Eye y ShotTracker mencionados como socios (enunciado)
-- **Función**: Proporcionar datos de seguimiento de jugadores y balones (enunciado)
-- **Integración**: Independiente de cualquier socio específico (enunciado)
-- **Capacidad**: Integración con cualquier sistema existente del recinto o liga (enunciado)
-
-### A.3 Usuarios Técnicos y de Soporte
-
-#### 9. Integradores de Sistemas de Terceros
-- **Descripción**: Desarrolladores que integran sistemas externos (Hawk-Eye, ShotTracker)
-- **Contexto de uso**: Integración y mantenimiento de APIs externas
-- **Nivel técnico**: Muy alto, especialistas en integración
-- **Dispositivos de acceso**: APIs, SDKs, herramientas de desarrollo
-- **Necesidades principales**:
-  - APIs bien documentadas y estables
-  - Herramientas de testing y debugging
-  - Monitoreo de integraciones
-  - Soporte técnico especializado
-
-#### 8. Personal de Mantenimiento
-- **Descripción**: Técnicos especializados en hardware LED y sistemas de red
-- **Contexto de uso**: Mantenimiento preventivo y correctivo
-- **Nivel técnico**: Alto en electrónica y sistemas
-- **Dispositivos de acceso**: Herramientas de diagnóstico, aplicaciones móviles especializadas
-- **Necesidades principales**:
-  - Diagnósticos automatizados del sistema
-  - Alertas predictivas de fallas
-  - Guías de reparación interactivas
-  - Gestión de inventario de repuestos
+- **Objetivo**: Fomentar participación en todos los niveles con valor sin precedentes (enunciado)
 
 ---
 
-## B) DEFINICIÓN DE NÚMERO Y TIPOS DE SERVICIOS POR USUARIO
+## B) DEFINICIÓN DE NÚMERO Y TIPOS DE SERVICIOS POR USUARIO FINAL
 
-### B.1 Servicios para Atletas/Jugadores (Basados en funcionalidades del enunciado)
+### 1. Servicios para Entrenadores y Cuerpo Técnico (5 servicios)
 
-#### 1. **Servicio de Seguimiento de Rendimiento en Tiempo Real** (enunciado)
-- **Funcionalidad**: Mostrar métricas de rendimiento en tiempo real directamente en la cancha
-- **Información mostrada**: Tiempo de reacción, velocidad, distancia recorrida, precisión de tiros (enunciado)
-- **Interfaz**: Visualización instantánea en la cancha para análisis inmediato (enunciado)
+#### 1.1 **Servicio de Pizarra Digital Interactiva** (enunciado)
+- **Funcionalidad**: Dibujar tácticas y ejercicios directamente en la cancha en tiempo real (enunciado)
+- **Información**: Líneas, flechas, zonas, animaciones de jugadas
+- **Interfaz**: Aplicación de tableta que permite dibujo directo en cancha (enunciado)
 
-#### 2. **Servicio de Entornos Virtuales Dinámicos** (enunciado)
-- **Funcionalidad**: Proyectar animaciones de "defensores virtuales" (enunciado) 
-- **Información mostrada**: Escenarios de entrenamiento gamificados (enunciado)
-- **Interfaz**: Cancha puede crear escenarios para perfeccionar habilidades (enunciado)
+#### 1.2 **Servicio de Seguimiento de Rendimiento y Estadísticas** (enunciado)
+- **Funcionalidad**: Integración con sistemas de seguimiento de terceros para métricas de atletas (enunciado)
+- **Información**: Métricas de rendimiento mostradas en tiempo real directamente en la cancha (enunciado)
+- **Interfaz**: Dashboard de análisis en tablet con visualización en cancha
 
-#### 3. **Servicio de Desarrollo de Habilidades Específicas** (enunciado)
-- **Funcionalidad**: Ayudar a perfeccionar velocidad, agilidad y visión periférica (enunciado)
-- **Información mostrada**: Ejercicios interactivos y feedback visual
-- **Interfaz**: Sistema integrado de cancha inteligente
+#### 1.3 **Servicio de Entornos Virtuales Dinámicos** (enunciado)
+- **Funcionalidad**: Proyectar animaciones de "defensores virtuales" (enunciado)
+- **Información**: Escenarios de entrenamiento gamificados (enunciado)
+- **Interfaz**: Control desde tablet para crear escenarios interactivos
 
-#### 4. **Servicio de Comparación y Benchmarking**
-- **Funcionalidad**: Comparación con otros jugadores y estándares profesionales
-- **Información mostrada**: Percentiles, rankings, evolución temporal
-- **Interfaz**: Dashboard web y móvil
+#### 1.4 **Servicio de Retroalimentación en Tiempo Real** (enunciado)
+- **Funcionalidad**: Análisis inmediato de rendimiento de atletas y entrenadores (enunciado)
+- **Información**: Tiempo de reacción, velocidad, distancia recorrida, precisión de tiros (enunciado)
+- **Interfaz**: Visualización instantánea en la cancha (enunciado)
 
-#### 5. **Servicio de Entrenamiento Personalizado**
-- **Funcionalidad**: Rutinas adaptadas basadas en datos históricos
-- **Información mostrada**: Ejercicios recomendados, progresión
-- **Interfaz**: App móvil con notificaciones
+#### 1.5 **Servicio de Integración con Sistemas de Terceros** (enunciado)
+- **Funcionalidad**: Conexión con Hawk-Eye, ShotTracker y otros sistemas (enunciado)
+- **Información**: Datos de seguimiento de jugadores y balones integrados (enunciado)
+- **Interfaz**: API de integración y panel de control unificado
 
-#### 6. **Servicio de Análisis Biomecánico**
-- **Funcionalidad**: Análisis de movimientos y técnica deportiva
-- **Información mostrada**: Ángulos, fuerzas, eficiencia de movimiento
-- **Interfaz**: Visualización 3D en tablet/móvil
+### 2. Servicios para Atletas/Jugadores (4 servicios)
 
-#### 7. **Servicio de Recuperación y Carga de Trabajo**
-- **Funcionalidad**: Monitoreo de fatiga y recomendaciones de recuperación
-- **Información mostrada**: Niveles de carga, tiempo de recuperación
-- **Interfaz**: Wearables + app móvil
+#### 2.1 **Servicio de Métricas Personales en Tiempo Real** (enunciado)
+- **Funcionalidad**: Visualización instantánea de rendimiento individual (enunciado)
+- **Información**: Tiempo de reacción, velocidad, distancia recorrida, precisión de tiros (enunciado)
+- **Interfaz**: Displays en cancha y aplicación móvil personal
 
-#### 8. **Servicio de Replay Personal**
-- **Funcionalidad**: Acceso a grabaciones de sus jugadas y entrenamientos
-- **Información mostrada**: Videos con análisis superpuesto
-- **Interfaz**: App móvil y web
+#### 2.2 **Servicio de Desarrollo de Habilidades** (enunciado)
+- **Funcionalidad**: Perfeccionar velocidad, agilidad y visión periférica (enunciado)
+- **Información**: Ejercicios interactivos con feedback inmediato
+- **Interfaz**: Proyección directa en cancha para seguimiento de ejercicios
 
-### B.2 Servicios para Entrenadores y Cuerpo Técnico (10 servicios)
+#### 2.3 **Servicio de Entrenamiento Gamificado** (enunciado)
+- **Funcionalidad**: Escenarios de entrenamiento con elementos de juego (enunciado)
+- **Información**: Defensores virtuales, challenges, puntuaciones
+- **Interfaz**: Experiencia inmersiva en cancha con elementos visuales
 
-#### 1. **Servicio de Análisis Táctico en Tiempo Real**
-- **Funcionalidad**: Visualización de formaciones y movimientos tácticos
-- **Información mostrada**: Mapas de calor, patrones de movimiento, spacing
-- **Interfaz**: Tablet con herramientas de análisis
+#### 2.4 **Servicio de Análisis Post-Entrenamiento**
+- **Funcionalidad**: Revisión de rendimiento después de sesiones
+- **Información**: Videos con métricas superpuestas, evolución temporal
+- **Interfaz**: Aplicación móvil con acceso a replays y estadísticas
 
-#### 2. **Servicio de Pizarra Digital Interactiva**
-- **Funcionalidad**: Dibujo de jugadas directamente en la cancha
-- **Información mostrada**: Líneas, flechas, zonas, animaciones
-- **Interfaz**: Tablet con stylus + proyección en cancha
+### 3. Servicios para Árbitros y Oficiales (3 servicios)
 
-#### 3. **Servicio de Diseño de Ejercicios**
-- **Funcionalidad**: Creación de entrenamientos personalizados
-- **Información mostrada**: Templates, bibliotecas de ejercicios
-- **Interfaz**: Software especializado en laptop/tablet
+#### 3.1 **Servicio de Asistencia Arbitral**
+- **Funcionalidad**: Replay instantáneo y análisis de jugadas controversiales
+- **Información**: Video de múltiples ángulos con datos de tracking superpuestos
+- **Interfaz**: Panel de control dedicado con acceso rápido a replays
 
-#### 4. **Servicio de Análisis de Rendimiento del Equipo**
-- **Funcionalidad**: Métricas colectivas y comparaciones entre jugadores
-- **Información mostrada**: Estadísticas de equipo, rankings internos
-- **Interfaz**: Dashboard web completo
+#### 3.2 **Servicio de Cronometraje Automático**
+- **Funcionalidad**: Control de tiempo de juego y marcador en tiempo real
+- **Información**: Tiempo oficial, pausas, estadísticas del partido
+- **Interfaz**: Display de árbitro y proyección en cancha
 
-#### 5. **Servicio de Simulación de Oponentes**
-- **Funcionalidad**: Recreación de estilos de juego de equipos rivales
-- **Información mostrada**: Patrones de juego, tendencias tácticas
-- **Interfaz**: Visualización en cancha + análisis en tablet
+#### 3.3 **Servicio de Comunicación Oficial**
+- **Funcionalidad**: Comunicación con mesa de control y otros árbitros
+- **Información**: Decisiones oficiales, consultas técnicas, alertas
+- **Interfaz**: Sistema de comunicación inalámbrico integrado
 
-#### 6. **Servicio de Gestión de Sesiones**
-- **Funcionalidad**: Control completo de entrenamientos y partidos
-- **Información mostrada**: Cronometraje, rotaciones, sustituciones
-- **Interfaz**: Panel de control en tablet
+### 4. Servicios para Operadores de Instalaciones (4 servicios)
 
-#### 7. **Servicio de Reportes Automáticos**
-- **Funcionalidad**: Generación de informes post-entrenamiento/partido
-- **Información mostrada**: Estadísticas, insights, recomendaciones
-- **Interfaz**: Reportes PDF + dashboard web
+#### 4.1 **Servicio de Control de GlassFloor** (enunciado)
+- **Funcionalidad**: Funcionamiento básico de GlassFloor y hardware integrado (enunciado)
+- **Información**: Estado de sistemas, configuraciones activas
+- **Interfaz**: Navegador de cancha para control fácil (enunciado)
 
-#### 8. **Servicio de Video Análisis Integrado**
-- **Funcionalidad**: Revisión de jugadas con datos superpuestos
-- **Información mostrada**: Video + métricas + anotaciones
-- **Interfaz**: Software de video análisis en laptop
+#### 4.2 **Servicio de Gestión de Layouts Deportivos** (enunciado)
+- **Funcionalidad**: Cambio rápido entre deportes con diferentes dimensiones (enunciado)
+- **Información**: Configuraciones predefinidas multideporte (enunciado)
+- **Interfaz**: Panel de inicio de aplicaciones (enunciado)
 
-#### 9. **Servicio de Planificación de Temporada**
-- **Funcionalidad**: Seguimiento de progreso a largo plazo
-- **Información mostrada**: Evolución de métricas, periodización
-- **Interfaz**: Dashboard web con timeline
+#### 4.3 **Servicio de Personalización de Contenido** (enunciado)
+- **Funcionalidad**: Añadir logotipos de patrocinadores y gráficos personalizados (enunciado)
+- **Información**: Templates de diseño, biblioteca de contenido
+- **Interfaz**: Editor de cancha para personalización completa (enunciado)
 
-#### 10. **Servicio de Comunicación con Equipo Técnico**
-- **Funcionalidad**: Chat y notificaciones entre staff técnico
-- **Información mostrada**: Mensajes, alertas, notas de jugadores
-- **Interfaz**: App móvil + notificaciones push
+#### 4.4 **Servicio de Monitoreo del Sistema**
+- **Funcionalidad**: Supervisión en tiempo real de hardware LED y componentes
+- **Información**: Estado de LEDs, temperaturas, consumo energético, alertas
+- **Interfaz**: Dashboard de monitoreo con notificaciones automáticas
 
-### B.3 Servicios para Operadores de Instalaciones (6 servicios)
+### 5. Servicios para Aficionados/Espectadores (3 servicios)
 
-#### 1. **Servicio de Control del Sistema GlassCourt OS**
-- **Funcionalidad**: Administración completa de la plataforma
-- **Información mostrada**: Estado de sistemas, configuraciones activas
-- **Interfaz**: Consola de administración web
+#### 5.1 **Servicio de Entretenimiento Dinámico** (enunciado)
+- **Funcionalidad**: Animaciones durante presentaciones de jugadores y descansos (enunciado)
+- **Información**: Contenido visual espectacular, efectos especiales
+- **Interfaz**: Experiencia visual inmersiva en cancha
 
-#### 2. **Servicio de Monitoreo de Hardware**
-- **Funcionalidad**: Supervisión en tiempo real de todos los componentes
-- **Información mostrada**: Estado LEDs, temperaturas, consumo energético
-- **Interfaz**: Dashboard de monitoreo con alertas
+#### 5.2 **Servicio de Gamificación para Aficionados** (enunciado)
+- **Funcionalidad**: Minijuegos interactivos durante inactividad (enunciado)
+- **Información**: Competencias, encuestas, trivia interactiva
+- **Interfaz**: Aplicación móvil conectada con cancha
 
-#### 3. **Servicio de Gestión de Eventos**
-- **Funcionalidad**: Configuración y programación de eventos
-- **Información mostrada**: Calendarios, layouts, configuraciones
-- **Interfaz**: Software de gestión de eventos
-
-#### 4. **Servicio de Gestión de Usuarios y Permisos**
-- **Funcionalidad**: Administración de accesos y roles
-- **Información mostrada**: Lista de usuarios, permisos, actividad
-- **Interfaz**: Panel de administración web
-
-#### 5. **Servicio de Backup y Recuperación**
-- **Funcionalidad**: Gestión de copias de seguridad y restauración
-- **Información mostrada**: Estado de backups, logs de recuperación
-- **Interfaz**: Herramientas de administración
-
-#### 6. **Servicio de Actualizaciones del Sistema**
-- **Funcionalidad**: Gestión de updates de software y firmware
-- **Información mostrada**: Versiones, changelogs, estado de updates
-- **Interfaz**: Panel de actualizaciones
-
-### B.4 Servicios para Otros Usuarios
-
-#### Árbitros (3 servicios)
-1. **Servicio de Asistencia Arbitral**: Replay instantáneo y análisis de jugadas
-2. **Servicio de Cronometraje Automático**: Control de tiempo y marcador
-3. **Servicio de Comunicación Oficial**: Chat con mesa de control
-
-#### Espectadores (4 servicios)
-1. **Servicio de Estadísticas en Vivo**: Información del partido en tiempo real
-2. **Servicio de Entretenimiento Interactivo**: Mini-juegos durante descansos
-3. **Servicio de Contenido Multimedia**: Acceso a replays y contenido adicional
-4. **Servicio de Información del Evento**: Programación, equipos, datos históricos
-
-#### Directivos (3 servicios)
-1. **Servicio de Analytics de Negocio**: Métricas de uso y ROI
-2. **Servicio de Gestión de Patrocinadores**: Control de contenido publicitario
-3. **Servicio de Reportes Ejecutivos**: Dashboards y KPIs del sistema
+#### 5.3 **Servicio de Narrativa Visual** (enunciado)
+- **Funcionalidad**: Combinar datos de rendimiento con gráficos dinámicos (enunciado)
+- **Información**: Estadísticas en tiempo real, historias emotivas (enunciado)
+- **Interfaz**: Visualización en cancha y segunda pantalla móvil
 
 ---
 
