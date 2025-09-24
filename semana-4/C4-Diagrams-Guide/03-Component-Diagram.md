@@ -296,6 +296,84 @@ class DeviceController:
 3. **Validar** que las dependencias reales coincidan con el diagrama
 4. **Continuar** con [Diagrama de Código](./04-Code-Diagram.md) si es necesario
 
+### Visualización en GitHub
+
+Para visualizar este diagrama en GitHub, tienes varias opciones:
+
+#### Opción 1: Servidor PlantUML público
+Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
+
+#### Opción 2: Extensión VS Code
+Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
+
+#### Opción 3: Mermaid (alternativa que funciona en GitHub)
+Versión simplificada del diagrama de componentes para un Servicio de Dispositivos IoT:
+
+```mermaid
+graph TB
+    subgraph "📱 Aplicaciones Externas"
+        A1[App Móvil]
+        A2[Dashboard Web]
+    end
+    
+    subgraph "🔧 Servicio de Dispositivos IoT"
+        subgraph "🌐 API Layer"
+            C1[API Controller<br/>FastAPI<br/>Endpoints REST]
+        end
+        
+        subgraph "🧠 Business Logic"
+            C2[Device Manager<br/>Lógica de dispositivos]
+            C3[Data Validator<br/>Validación Pydantic]
+            C4[Alert Engine<br/>Motor de alertas]
+        end
+        
+        subgraph "📡 Communication"
+            C5[MQTT Handler<br/>Paho MQTT<br/>Pub/Sub]
+        end
+        
+        subgraph "💾 Data Access"
+            C6[Device Repository<br/>SQLAlchemy<br/>CRUD operations]
+            C7[Sensor Repository<br/>InfluxDB Client<br/>Time series data]
+        end
+        
+        subgraph "🔒 Security"
+            C8[Auth Middleware<br/>JWT<br/>Authentication]
+        end
+    end
+    
+    subgraph "💾 Bases de Datos"
+        D1[PostgreSQL<br/>Devices & Config]
+        D2[InfluxDB<br/>Sensor Data]
+    end
+    
+    subgraph "📡 Externos"
+        E1[Dispositivos IoT<br/>ESP32/MQTT]
+        E2[Servicio Notificaciones]
+    end
+    
+    %% External connections
+    A1 -->|HTTPS/REST| C1
+    A2 -->|HTTPS/REST| C1
+    E1 -->|MQTT| C5
+    
+    %% Internal flow
+    C1 --> C8
+    C8 --> C2
+    C2 --> C3
+    C2 --> C4
+    C2 --> C6
+    C2 --> C7
+    C5 --> C3
+    C3 --> C4
+    C4 --> E2
+    
+    %% Data access
+    C6 --> D1
+    C7 --> D2
+```
+
+**💡 Ventaja**: Muestra claramente la separación de responsabilidades típica en arquitecturas IoT con capas de API, lógica de negocio, comunicación y acceso a datos.
+
 ---
 
 **💡 Tip**: Este diagrama debe servir como blueprint para la implementación. Si el código real difiere mucho del diagrama, uno de los dos necesita actualizarse.

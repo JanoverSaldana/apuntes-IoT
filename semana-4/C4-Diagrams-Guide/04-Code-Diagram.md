@@ -541,6 +541,138 @@ class DeviceManager {
 """
 ```
 
+### Visualización en GitHub
+
+Para visualizar este diagrama en GitHub, tienes varias opciones:
+
+#### Opción 1: Servidor PlantUML público
+Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
+
+#### Opción 2: Extensión VS Code
+Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
+
+#### Opción 3: Mermaid (alternativa que funciona en GitHub)
+Diagrama de clases simplificado para un Driver de Sensor IoT:
+
+```mermaid
+classDiagram
+    class SensorInterface {
+        <<interface>>
+        +read_raw_data() float
+        +calibrate(offset float, scale float)
+        +get_status() SensorStatus
+        +reset()
+    }
+    
+    class TemperatureSensor {
+        -pin: int
+        -calibration_offset: float
+        -calibration_scale: float
+        -last_reading: float
+        -status: SensorStatus
+        +read_raw_data() float
+        +calibrate(offset float, scale float)
+        +get_temperature_celsius() float
+        +get_temperature_fahrenheit() float
+        +get_status() SensorStatus
+        +reset()
+        -apply_calibration(raw_value float) float
+    }
+    
+    class SensorStatus {
+        <<enumeration>>
+        ACTIVE
+        ERROR
+        CALIBRATING
+        OFFLINE
+    }
+    
+    class SensorManager {
+        -sensors: List~SensorInterface~
+        -mqtt_client: MQTTClient
+        -reading_interval: int
+        +add_sensor(sensor SensorInterface)
+        +start_monitoring()
+        +stop_monitoring()
+        +publish_readings()
+        -collect_all_readings() Dict
+        -handle_sensor_error(sensor SensorInterface)
+    }
+    
+    class MQTTClient {
+        -broker_host: str
+        -broker_port: int
+        -client_id: str
+        -is_connected: bool
+        +connect()
+        +disconnect()
+        +publish(topic str, payload str)
+        +subscribe(topic str, callback Function)
+    }
+    
+    class DataPacket {
+        +device_id: str
+        +timestamp: datetime
+        +sensor_type: str
+        +value: float
+        +unit: str
+        +quality: float
+        +to_json() str
+        +from_json(json_str str) DataPacket
+    }
+    
+    SensorInterface <|-- TemperatureSensor
+    TemperatureSensor --> SensorStatus
+    SensorManager --> SensorInterface
+    SensorManager --> MQTTClient
+    SensorManager --> DataPacket
+```
+
+#### Opción 4: State Machine para Control IoT
+Para dispositivos IoT con estados complejos:
+
+```mermaid
+stateDiagram-v2
+    [*] --> INIT
+    
+    INIT --> CONNECTING: WiFi Setup
+    CONNECTING --> CONNECTED: Success
+    CONNECTING --> ERROR: Connection Failed
+    
+    CONNECTED --> ACTIVE: Registration OK
+    CONNECTED --> ERROR: Registration Failed
+    
+    ACTIVE --> MEASURING: Timer Trigger
+    MEASURING --> PROCESSING: Data Collected
+    PROCESSING --> TRANSMITTING: Data Ready
+    TRANSMITTING --> ACTIVE: Success
+    TRANSMITTING --> RETRY: Failed
+    
+    RETRY --> TRANSMITTING: Attempt < 3
+    RETRY --> ERROR: Max Attempts
+    
+    ACTIVE --> SLEEP: Low Power Mode
+    SLEEP --> ACTIVE: Wake Up
+    
+    ERROR --> INIT: Reset
+    
+    note right of MEASURING
+        Read sensors:
+        - Temperature
+        - Humidity  
+        - Pressure
+    end note
+    
+    note right of PROCESSING
+        Apply filters:
+        - Kalman filter
+        - Outlier detection
+        - Data validation
+    end note
+```
+
+**💡 Ventaja**: Mermaid permite mostrar tanto diagramas de clases como máquinas de estado, fundamentales en el desarrollo de firmware IoT.
+
 ---
 
 **💡 Tip**: Los diagramas de código deben ser una herramienta de comunicación, no una carga de mantenimiento. Úsalos estratégicamente solo donde agreguen valor real.

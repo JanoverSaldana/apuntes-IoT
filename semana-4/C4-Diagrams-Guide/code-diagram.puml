@@ -1,0 +1,73 @@
+@startuml Code_Diagram_Classes
+title Device Manager - Diagrama de Clases
+
+interface ISensorInterface {
+    +read_raw_data(): float
+    +calibrate(offset: float, scale: float): void
+    +get_status(): SensorStatus
+    +reset(): void
+}
+
+class TemperatureSensor {
+    -pin: int
+    -calibration_offset: float
+    -calibration_scale: float
+    -last_reading: float
+    -status: SensorStatus
+    +read_raw_data(): float
+    +calibrate(offset: float, scale: float): void
+    +get_temperature_celsius(): float
+    +get_temperature_fahrenheit(): float
+    +get_status(): SensorStatus
+    +reset(): void
+    -apply_calibration(raw_value: float): float
+}
+
+enum SensorStatus {
+    ACTIVE
+    ERROR
+    CALIBRATING
+    OFFLINE
+}
+
+class SensorManager {
+    -sensors: List<ISensorInterface>
+    -mqtt_client: MQTTClient
+    -reading_interval: int
+    +add_sensor(sensor: ISensorInterface): void
+    +start_monitoring(): void
+    +stop_monitoring(): void
+    +publish_readings(): void
+    -collect_all_readings(): Dict
+    -handle_sensor_error(sensor: ISensorInterface): void
+}
+
+class MQTTClient {
+    -broker_host: string
+    -broker_port: int
+    -client_id: string
+    -is_connected: bool
+    +connect(): bool
+    +disconnect(): void
+    +publish(topic: string, payload: string): bool
+    +subscribe(topic: string, callback: Function): void
+}
+
+class DataPacket {
+    +device_id: string
+    +timestamp: datetime
+    +sensor_type: string
+    +value: float
+    +unit: string
+    +quality: float
+    +to_json(): string
+    +from_json(json_str: string): DataPacket
+}
+
+ISensorInterface <|-- TemperatureSensor
+TemperatureSensor --> SensorStatus
+SensorManager --> ISensorInterface
+SensorManager --> MQTTClient
+SensorManager --> DataPacket
+
+@enduml

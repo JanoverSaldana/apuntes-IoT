@@ -1,0 +1,26 @@
+@startuml Smart_Agriculture_Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Sistema de Agricultura Inteligente - Contexto
+
+Person(farmer, "Agricultor", "Propietario que gestiona cultivos")
+Person(technician, "Técnico Agrícola", "Especialista en mantenimiento")
+Person(agronomist, "Agrónomo", "Experto que analiza datos")
+
+System(smart_farm, "Sistema de Agricultura Inteligente", "Monitorea cultivos, automatiza riego y optimiza producción")
+
+System_Ext(weather_service, "Servicio Meteorológico", "API de datos climáticos")
+System_Ext(satellite_imagery, "Imágenes Satelitales", "Análisis de cultivos por satélite")
+System_Ext(market_prices, "Precios de Mercado", "Información de precios agrícolas")
+System_Ext(irrigation_system, "Sistema de Riego", "Infraestructura de riego existente")
+
+Rel(farmer, smart_farm, "Monitorea cultivos\nRecibe alertas", "App móvil")
+Rel(technician, smart_farm, "Mantiene sensores\nCalibra equipos", "Panel web")
+Rel(agronomist, smart_farm, "Analiza tendencias\nOptimiza cultivos", "Dashboard")
+
+Rel(smart_farm, weather_service, "Obtiene pronósticos", "API REST")
+Rel(smart_farm, satellite_imagery, "Analiza imágenes", "API REST")
+Rel(smart_farm, market_prices, "Consulta precios", "API REST")
+Rel(smart_farm, irrigation_system, "Controla riego", "Modbus/TCP")
+
+@enduml

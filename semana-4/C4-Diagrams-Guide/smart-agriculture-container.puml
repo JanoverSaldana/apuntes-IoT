@@ -1,0 +1,63 @@
+@startuml Smart_Agriculture_Container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Sistema de Agricultura Inteligente - Contenedores
+
+Person(farmer, "Agricultor")
+Person(technician, "Técnico")
+
+System_Boundary(smart_farm, "Sistema de Agricultura Inteligente") {
+    Container(mobile_app, "App Móvil Agricultor", "React Native", "Monitoreo en campo y alertas")
+    Container(web_portal, "Portal Web Técnico", "Vue.js", "Configuración y mantenimiento")
+    Container(dashboard, "Dashboard Analítico", "Angular + D3.js", "Análisis y reportes avanzados")
+    
+    Container(api_gateway, "API Gateway", "Kong", "Punto de entrada y autenticación")
+    Container(device_service, "Servicio de Dispositivos", "Node.js + TypeScript", "Gestión de sensores y actuadores")
+    Container(data_processor, "Procesador de Datos", "Python + Apache Spark", "ETL y análisis de datos agrícolas")
+    Container(ml_service, "Servicio ML", "Python + TensorFlow", "Predicciones y optimización")
+    Container(notification_service, "Servicio de Notificaciones", "Go", "Alertas multi-canal")
+    
+    ContainerDb(timeseries_db, "Base de Datos Temporal", "InfluxDB", "Datos de sensores ambientales")
+    ContainerDb(operational_db, "Base de Datos Operacional", "PostgreSQL", "Dispositivos, usuarios, configuración")
+    ContainerDb(analytics_db, "Data Warehouse", "ClickHouse", "Datos históricos para análisis")
+    Container(cache, "Cache Distribuido", "Redis Cluster", "Cache de datos frecuentes")
+    Container(message_queue, "Cola de Mensajes", "Apache Kafka", "Streaming de datos IoT")
+}
+
+Container(iot_gateway, "Gateway IoT", "Raspberry Pi + Python", "Agregación y pre-procesamiento")
+System_Ext(field_sensors, "Sensores de Campo", "ESP32 con sensores ambientales")
+System_Ext(drones, "Drones Agrícolas", "Captura de imágenes aéreas")
+System_Ext(weather_station, "Estación Meteorológica", "Datos climáticos locales")
+
+' User interactions
+Rel(farmer, mobile_app, "Usa", "HTTPS")
+Rel(technician, web_portal, "Configura", "HTTPS")
+
+' API interactions
+Rel(mobile_app, api_gateway, "API calls", "HTTPS/REST")
+Rel(web_portal, api_gateway, "API calls", "HTTPS/REST")
+Rel(dashboard, api_gateway, "API calls", "HTTPS/REST")
+
+' Internal services
+Rel(api_gateway, device_service, "Routes", "HTTP")
+Rel(api_gateway, ml_service, "Routes", "HTTP")
+Rel(api_gateway, notification_service, "Routes", "HTTP")
+
+Rel(device_service, operational_db, "R/W", "SQL")
+Rel(device_service, timeseries_db, "Writes", "InfluxQL")
+Rel(device_service, message_queue, "Publishes", "Kafka")
+
+Rel(data_processor, message_queue, "Consumes", "Kafka")
+Rel(data_processor, timeseries_db, "Reads", "InfluxQL")
+Rel(data_processor, analytics_db, "Writes", "SQL")
+
+Rel(ml_service, analytics_db, "Reads", "SQL")
+Rel(ml_service, cache, "Cache", "Redis")
+
+' IoT connections
+Rel(field_sensors, iot_gateway, "Sensor data", "LoRaWAN")
+Rel(drones, iot_gateway, "Images", "WiFi")
+Rel(weather_station, iot_gateway, "Weather data", "Modbus")
+Rel(iot_gateway, device_service, "Aggregated data", "MQTT/TLS")
+
+@enduml

@@ -24,24 +24,57 @@ El modelo C4 adaptado para IoT muestra estos niveles de abstracción:
 
 ### 📁 Archivos incluidos:
 
-1. **[01-Context-Diagram.md](./01-Context-Diagram.md)** - Diagrama de Contexto
-2. **[02-Container-Diagram.md](./02-Container-Diagram.md)** - Diagrama de Contenedores
-3. **[03-Component-Diagram.md](./03-Component-Diagram.md)** - Diagrama de Componentes
-4. **[04-Code-Diagram.md](./04-Code-Diagram.md)** - Diagrama de Código
-5. **[05-IoT-Examples.md](./05-IoT-Examples.md)** - Ejemplos específicos para IoT
+1. **[01-Context-Diagram.md](./01-Context-Diagram.md)** - Diagrama de Contexto IoT ✅
+2. **[02-Container-Diagram.md](./02-Container-Diagram.md)** - Diagrama de Contenedores IoT ✅
+3. **[03-Component-Diagram.md](./03-Component-Diagram.md)** - Diagrama de Componentes IoT ✅
+4. **[04-Code-Diagram.md](./04-Code-Diagram.md)** - Diagrama de Código IoT ✅
+5. **[05-IoT-Examples.md](./05-IoT-Examples.md)** - Ejemplos específicos para IoT ✅
+6. **[GitHub-Visualization.md](./GitHub-Visualization.md)** - 🔧 **Guía para visualizar en GitHub**
+
+### 📄 Archivos PlantUML (.puml):
+- `context-diagram.puml` - Diagrama base de contexto
+- `container-diagram.puml` - Diagrama base de contenedores  
+- `component-diagram.puml` - Diagrama base de componentes
+- `code-diagram.puml` - Diagrama base de código
+- `smart-agriculture-context.puml` - Ejemplo agricultura (contexto)
+- `smart-agriculture-container.puml` - Ejemplo agricultura (contenedores)
+
+> ✅ **Todos los niveles incluyen opciones de visualización para GitHub**
+> - PlantUML para desarrollo local
+> - Mermaid para visualización nativa en GitHub  
+> - Archivos .puml para edición colaborativa
 
 ## Herramientas Recomendadas
 
-### Online:
-- **PlantUML**: Ideal para diagramas como código
-- **Draw.io (diagrams.net)**: Editor visual gratuito
-- **Lucidchart**: Herramienta profesional
-- **Miro/Mural**: Para colaboración en equipo
+### Para PlantUML:
+- **VS Code + PlantUML Extension**: Preview en tiempo real durante desarrollo
+- **PlantUML Server**: http://www.plantuml.com/plantuml/uml/ para visualización web
+- **IntelliJ IDEA Plugin**: Integración nativa con IDEs JetBrains
 
-### Software:
-- **Structurizr**: Herramienta oficial del modelo C4
-- **Visio**: Para entornos corporativos Microsoft
-- **Omnigraffle**: Para usuarios de Mac
+### Alternativas Online:
+- **Draw.io (diagrams.net)**: Editor visual gratuito con plantillas C4
+- **Lucidchart**: Herramienta profesional con colaboración
+- **Miro/Mural**: Para colaboración en equipo y workshops
+
+### Software Especializado:
+- **Structurizr**: Herramienta oficial del modelo C4 (DSL propio)
+- **Enterprise Architect**: Para documentación completa de arquitectura
+
+## 🔧 Configuración para GitHub
+
+### Problema: PlantUML no se renderiza automáticamente en GitHub
+
+### ✅ **Soluciones recomendadas:**
+
+1. **Usar extensión VS Code PlantUML** para desarrollo local
+2. **Exportar imágenes PNG/SVG** y subirlas al repositorio
+3. **Usar Mermaid** como alternativa (GitHub lo soporta nativamente)
+4. **Usar servicios como PlantUML Server** para generar URLs de imágenes
+
+### Ejemplo de integración con GitHub:
+```markdown
+![Diagrama](http://www.plantuml.com/plantuml/svg/[código_codificado])
+```
 
 ## Principios Clave
 

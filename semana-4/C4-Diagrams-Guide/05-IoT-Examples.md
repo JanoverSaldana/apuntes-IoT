@@ -408,6 +408,78 @@ Queries (Data Analytics) → Read Model (Optimized)
 - **Data Retention**: 1-7 años según regulaciones
 - **Recovery Time**: <15 minutos para servicios críticos
 
+## Visualización de Diagramas en GitHub
+
+### 🔧 Problema Común
+Los diagramas PlantUML no se renderizan automáticamente en GitHub. Para solucionarlo:
+
+#### ✅ Solución 1: Usar Mermaid (Recomendado)
+GitHub soporta Mermaid nativamente. Ejemplo de arquitectura IoT industrial:
+
+```mermaid
+graph TB
+    subgraph "🏭 Factory Floor"
+        D1[🔧 Industrial PLCs<br/>Modbus/TCP]
+        D2[📊 Quality Sensors<br/>Ethernet/IP]
+        D3[🌡️ Environmental Sensors<br/>Wireless]
+    end
+    
+    subgraph "🌐 Edge Layer"
+        E1[🚪 Edge Gateway<br/>Protocol Translation]
+        E2[💻 Edge Computing<br/>Local Analytics]
+    end
+    
+    subgraph "☁️ Cloud Platform"
+        C1[📊 IoT Platform<br/>AWS IoT Core]
+        C2[🗄️ Data Lake<br/>S3 + Glue]
+        C3[🤖 ML Pipeline<br/>SageMaker]
+        C4[📈 Analytics<br/>QuickSight]
+    end
+    
+    subgraph "👥 Users"
+        U1[👤 Operators<br/>HMI Dashboard]
+        U2[👤 Engineers<br/>Analytics Portal]
+        U3[👤 Managers<br/>Business Reports]
+    end
+    
+    D1 --> E1
+    D2 --> E1
+    D3 --> E1
+    
+    E1 --> E2
+    E2 --> C1
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+    
+    C4 --> U1
+    C4 --> U2
+    C4 --> U3
+```
+
+#### ✅ Solución 2: Exportar Imágenes
+1. Usa VS Code + PlantUML Extension
+2. Exporta como PNG/SVG
+3. Sube las imágenes al repositorio
+
+#### ✅ Solución 3: PlantUML Server
+```markdown
+![Diagram](http://www.plantuml.com/plantuml/svg/[ENCODED_CODE])
+```
+
+### 📁 Archivos de Soporte
+Los archivos `.puml` están disponibles para edición:
+- `context-diagram.puml`
+- `container-diagram.puml` 
+- `component-diagram.puml`
+- `code-diagram.puml`
+
+### 🔄 Workflow Recomendado
+1. **Desarrollo**: Usar PlantUML en VS Code
+2. **Documentación**: Exportar imágenes para GitHub
+3. **Colaboración**: Mantener archivos `.puml` para edición
+4. **Presentaciones**: Usar Mermaid para demos rápidas
+
 ---
 
 **💡 Tip Final**: Los sistemas IoT requieren consideraciones especiales de conectividad, energía y seguridad que no están presentes en sistemas tradicionales. Los diagramas C4 deben reflejar estas complejidades para ser útiles en el diseño e implementación.

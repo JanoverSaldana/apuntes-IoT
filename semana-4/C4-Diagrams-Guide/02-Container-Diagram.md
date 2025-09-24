@@ -273,6 +273,83 @@ Dispositivos → Message Broker → Procesadores → Notificaciones
 3. **Planificar** la infraestructura y despliegue
 4. **Documentar** APIs y interfaces entre contenedores
 
+### Visualización en GitHub
+
+Para visualizar este diagrama en GitHub, tienes varias opciones:
+
+#### Opción 1: Servidor PlantUML público
+Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
+
+#### Opción 2: Extensión VS Code
+Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
+
+#### Opción 3: Mermaid (alternativa que funciona en GitHub)
+GitHub soporta Mermaid nativamente. Versión del diagrama de contenedores:
+
+```mermaid
+graph TB
+    subgraph "👥 Usuarios"
+        U1[👤 Agricultor]
+        U2[👤 Técnico]
+    end
+    
+    subgraph "📱 Frontend Layer"
+        F1[📱 App Móvil<br/>React Native]
+        F2[🌐 Dashboard Web<br/>React.js]
+    end
+    
+    subgraph "🔗 API Layer"
+        A1[🚪 API Gateway<br/>Node.js + Express]
+    end
+    
+    subgraph "⚙️ Business Logic Layer"
+        B1[🔧 Servicio Dispositivos<br/>Python + FastAPI]
+        B2[📊 Procesador Datos<br/>Python + Celery]
+        B3[🔔 Servicio Notificaciones<br/>Node.js]
+    end
+    
+    subgraph "💾 Data Layer"
+        D1[📈 InfluxDB<br/>Time Series Data]
+        D2[🗄️ PostgreSQL<br/>Operational Data]
+        D3[📨 Redis/RabbitMQ<br/>Message Broker]
+    end
+    
+    subgraph "🌐 External Systems"
+        E1[📡 Sensores IoT<br/>ESP32]
+        E2[🌤️ API Meteorológica]
+        E3[📧 Servicio Email]
+    end
+    
+    %% User interactions
+    U1 -->|HTTPS| F1
+    U2 -->|HTTPS| F2
+    
+    %% Frontend to API
+    F1 -->|REST/HTTPS| A1
+    F2 -->|REST/HTTPS| A1
+    
+    %% API to Services
+    A1 -->|HTTP| B1
+    A1 -->|HTTP| B3
+    
+    %% Service interactions
+    B1 -->|SQL| D2
+    B1 -->|InfluxQL| D1
+    B1 -->|AMQP| D3
+    
+    B2 -->|AMQP| D3
+    B2 -->|InfluxQL| D1
+    B2 -->|HTTP| B3
+    
+    B3 -->|HTTPS| E3
+    
+    %% External connections
+    E1 -->|MQTT| B1
+    B2 -->|HTTPS| E2
+```
+
+**💡 Ventaja de Mermaid**: Se renderiza automáticamente en GitHub y permite mostrar la arquitectura distribuida típica de sistemas IoT.
+
 ---
 
 **💡 Tip**: Este diagrama debe ser la base para definir el stack tecnológico y planificar el desarrollo de cada contenedor por separado.

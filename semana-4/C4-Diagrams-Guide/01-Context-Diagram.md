@@ -65,6 +65,53 @@ Rel(iot_system, mobile_push, "Notificaciones urgentes", "Push API")
 @enduml
 ```
 
+### Visualización en GitHub
+
+Para visualizar este diagrama en GitHub, tienes varias opciones:
+
+#### Opción 1: Servidor PlantUML público
+Copia el código PlantUML y pégalo en: http://www.plantuml.com/plantuml/uml/
+
+#### Opción 2: Extensión VS Code
+Instala la extensión "PlantUML" en VS Code para preview en tiempo real.
+
+#### Opción 3: Imagen generada
+```
+![Diagrama de Contexto](http://www.plantuml.com/plantuml/svg/[ENCODED_DIAGRAM])
+```
+
+#### Opción 4: Mermaid (alternativa que funciona en GitHub)
+GitHub soporta Mermaid nativamente. Versión simplificada del diagrama de contexto:
+
+```mermaid
+graph TB
+    subgraph Usuarios
+        A[👤 Agricultor<br/>Monitorea cultivos]
+        B[👤 Técnico<br/>Mantiene sensores]
+        C[👤 Gerente<br/>Analiza datos]
+    end
+    
+    subgraph "Sistema IoT Agrícola"
+        D[🌱 Sistema de<br/>Monitoreo Agrícola<br/><br/>Sensores + Analytics<br/>+ Automatización]
+    end
+    
+    subgraph "Sistemas Externos"
+        E[🌤️ API Meteorológica<br/>Datos climáticos]
+        F[📧 Sistema Email<br/>Notificaciones]
+        G[📱 Servicio Push<br/>Alertas móviles]
+    end
+    
+    A -->|App móvil| D
+    B -->|Panel web| D
+    C -->|Dashboard| D
+    
+    D -->|API REST| E
+    D -->|SMTP| F
+    D -->|Push API| G
+```
+
+**💡 Ventaja de Mermaid**: Se renderiza automáticamente en GitHub sin configuración adicional.
+
 ## Ejemplo Visual (Texto)
 
 ```
